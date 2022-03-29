@@ -10,6 +10,8 @@ in {
       users."maddie" = {
           uid = 1001;
           description = "Madeline";
+          # intentionally not /home/$(whoami) to bait breaks
+          home = "/home/mads";
           isNormalUser = true;
           initialPassword = initial_password;
           extraGroups = [ "wheel" ];

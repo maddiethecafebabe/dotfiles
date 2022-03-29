@@ -11,23 +11,9 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub.useOSProber = true;
 
-  services.xserver = {
-    enable = true;
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
-  };
-
-  hardware.opentabletdriver = {
-    enable = true;
-        
-  };
-
-  environment.gnome.excludePackages = with pkgs; [
-    gnome.cheese gnome-photos gnome.gnome-music gnome.gedit epiphany evince gnome.gnome-characters gnome.totem gnome.tali gnome.hitori
-    gnome.iagno gnome.atomix gnome-tour gnome.geary
-  ];
-
   programs.zsh.enable = true;
+
+  services.xserver.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
@@ -39,9 +25,7 @@
   networking.interfaces.enp1s0.useDHCP = true;
   networking.interfaces.wlp2s0.useDHCP = true;
 
-  networking = {
-    hostName = "yukata";
-  };
+  networking.hostName = "yukata";
 
   console = {
      keyMap = "de";
@@ -55,7 +39,6 @@
      vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
      wget
      firefox
-     gnome.gnome-tweaks
      git
   ];
 
