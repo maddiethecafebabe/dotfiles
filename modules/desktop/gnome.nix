@@ -2,14 +2,14 @@
 
 { pkgs, lib, config, ... }:
 with lib;
-let cfg = config.services.xserver; in
+let xcfg = config.services.xserver; in
 {
-    services.xserver = mkIf cfg.enable  {
+    services.xserver = mkIf xcfg.enable  {
         displayManager.gdm.enable = true;
         desktopManager.gnome.enable = true;
     };
 
-    environment = mkIf cfg.enable {
+    environment = mkIf xcfg.enable {
         systemPackages = with pkgs; [
             gnome.gnome-tweaks
         ];
