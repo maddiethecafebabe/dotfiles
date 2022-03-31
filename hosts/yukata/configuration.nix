@@ -11,7 +11,12 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub.useOSProber = true;
 
+
   programs.zsh.enable = true;
+
+  environment.variables = {
+    EDITOR = "vim";
+  };
 
   services.xserver.enable = true;
 
