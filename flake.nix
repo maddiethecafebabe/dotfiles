@@ -1,5 +1,5 @@
 {
-  description = "The root of all evil";
+  description = "The root of all weebness";
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
@@ -9,6 +9,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
+  # yeah this is totally valid syntax, trust me
   outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, ... }: with inputs.nixpkgs.lib; let overlays = {
     nixpkgs.overlays = lists.flatten [ (import ./overlays) ];
   }; 

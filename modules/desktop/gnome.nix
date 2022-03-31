@@ -5,7 +5,10 @@ with lib;
 let xcfg = config.services.xserver; in
 {
     services.xserver = mkIf xcfg.enable  {
-        displayManager.gdm.enable = true;
+        displayManager.gdm = {
+            enable = true;
+            wayland = false;
+        };
         desktopManager.gnome.enable = true;
     };
 
