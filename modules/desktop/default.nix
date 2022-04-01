@@ -1,4 +1,4 @@
-{ lib, config, modules, ... }:
+{ lib, config, modules, pkgs, ... }:
 with lib;
 let 
     cfg = config.modules.desktop;
@@ -25,5 +25,11 @@ in {
             gayming.steam.enable = mkDefault true;
             home.enable = mkDefault true;
         };
+
+        # xdg-open will behave weird (read: open websites in gnome text editor)
+        # if no browser is installed so lets just do it here
+        environment.systemPackages = with pkgs; [
+            firefox
+        ];
     };
 }
