@@ -27,6 +27,7 @@
     nixosConfigurations = {
       yukata = mkSystem { host = "yukata"; };
       seifuku = mkSystem { host = "seifuku"; system = "aarch64-linux"; };
+      kimono = mkSystem { host = "kimono"; };
     };
   };
 }
