@@ -10,10 +10,8 @@ in {
         };
     };
 
-    inherit ({
-        imports = cfg.enable [
+        imports = [
             ./nix.nix
             ./users.nix
-        ];
-    });
+    ];
 }
