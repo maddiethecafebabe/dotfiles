@@ -1,12 +1,11 @@
 dir=$(dirname "$(readlink -f "$0")")
-homecfgdir="$HOME/.config/nixpkgs"
-user=maddie
 
-if [ ! -d $homecfgdir ]; then
-    mkdir -p "$HOME/.config" # just in case
-    echo symlinking $homecfgdir to $dir/home
-    ln -s $dir/home $homecfgdir
-fi
+mkdir -p "$HOME/.config" # just in case
+
+for f in $(ls ./config); do
+    echo symlinking $HOME/.config/$f -> $dir/config/$f
+    ln -s "$dir/config/$f" $HOME/.config/
+done
 
 sudo nixos-rebuild switch --flake .\#$1 --impure
 

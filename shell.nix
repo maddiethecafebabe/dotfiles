@@ -6,6 +6,7 @@ pkgs.mkShell {
   buildInputs = with pkgs; [
     git
     nixFlakes
+    vim
   ];
 
   shellHook = ''

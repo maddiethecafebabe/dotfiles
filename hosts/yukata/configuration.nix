@@ -47,13 +47,6 @@
      git
   ];
 
-  nixpkgs.config.allowUnfree = true;
-
-  nix.package = pkgs.nixUnstable;
-  nix.extraOptions = ''
-    experimental-features = nix-command flakes
-  '';
-
   services.openssh.enable = true;
   system.stateVersion = "21.11"; # Did you read the comment?
 }
