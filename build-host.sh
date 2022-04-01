@@ -4,8 +4,8 @@ user=maddie
 
 if [ ! -d $homecfgdir ]; then
     mkdir -p "$HOME/.config" # just in case
-    echo symlinking $homecfgdir to $dir/homes/$user
-    ln -s $dir/homes/$user $homecfgdir
+    echo symlinking $homecfgdir to $dir/home
+    ln -s $dir/home $homecfgdir
 fi
 
 sudo nixos-rebuild switch --flake .\#$1 --impure
