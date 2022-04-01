@@ -10,24 +10,29 @@
   };
 
   # yeah this is totally valid syntax, trust me
-  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, ... }: with inputs.nixpkgs.lib; let overlays = {
+  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, ... }: 
+  with inputs.nixpkgs.lib; 
+  let overlays = {
     nixpkgs.overlays = lists.flatten [ (import ./overlays) ];
+  };
+  mkSystem = host: args @ { system ? "x86_64-linux"}: nixosSystem {
+      system = system;
+
+      modules = [
+        overlays
+        ./modules
+        ./hosts/${host}/configuration.nix
+      ];
+
+      specialArgs = {
+        inherit inputs;
+      };
+    
   }; 
 
   in {    
     nixosConfigurations = {
-      "yukata" = nixosSystem {
-        system = "x86_64-linux";
-
-        modules = [
-          overlays
-          ./modules
-          ./hosts/yukata/configuration.nix
-          ./hosts/yukata/hardware-configuration.nix
-        ];
-
-        specialArgs = { inherit inputs; };
-      };
+      yukata = mkSystem "yukata" {};
 
     };
   };

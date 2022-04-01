@@ -8,7 +8,7 @@ if [ ! -d $homecfgdir ]; then
     ln -s $dir/homes/$user $homecfgdir
 fi
 
-sudo nixos-rebuild switch --flake .#$1
+sudo nixos-rebuild build --flake .#$1
 
 # todo do home-manager initial setup if doesnt exist
 # nix-shell '<home-manager>' -A install

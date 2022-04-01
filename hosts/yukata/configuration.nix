@@ -1,9 +1,10 @@
-{ config, pkgs, home-manager, ... }:
+{ config, pkgs, home-manager, modules, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -11,14 +12,13 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub.useOSProber = true;
 
-
   programs.zsh.enable = true;
 
   environment.variables = {
     EDITOR = "vim";
   };
 
-  services.xserver.enable = true;
+  modules.desktop.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
