@@ -4,7 +4,7 @@ let
   cfg = config.modules.desktop;
 in {
   # if there is no desktop support we dont need a graphics tablet driver
-  options = mkIf cfg.enable {
+  config = mkIf cfg.enable {
     hardware.opentabletdriver = {
       enable = true;
 
