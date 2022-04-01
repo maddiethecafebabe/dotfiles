@@ -13,7 +13,8 @@
   outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, ... }: 
   with inputs.nixpkgs.lib; let overlays = {
     nixpkgs.overlays = lists.flatten [ (import ./overlays) ];
-  }; mkSystem = args @ { host,  system ? "x86_64-linux"}: nixosSystem {
+  }; user = { name = "maddie"; home = "/home/mads"; full_name = "Madeline"; }; 
+  mkSystem = args @ { host,  system ? "x86_64-linux"}: nixosSystem {
       system = system;
       modules = [
         overlays
@@ -22,6 +23,7 @@
       ];
       specialArgs = {
         inherit inputs;
+        user = user;
       };
   }; in {    
     nixosConfigurations = {

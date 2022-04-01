@@ -1,4 +1,4 @@
-{ ... }: 
+{ user, ... }: 
 
 let initial_password = "smashthestate";
     ssh_keys = [ 
@@ -7,11 +7,11 @@ let initial_password = "smashthestate";
 in {
     users = {
       mutableUsers = true;
-      users."maddie" = {
+      users."${user.name}" = {
           uid = 1001;
-          description = "Madeline";
+          description = user.full_name;
           # intentionally not /home/$(whoami) to bait breaks
-          home = "/home/mads";
+          home = user.home;
           isNormalUser = true;
           initialPassword = initial_password;
           extraGroups = [ "wheel" ];
