@@ -20,7 +20,7 @@ in {
             enable = true;
             displayManager.gdm = {
                 enable = true;
-                wayland = false;
+                wayland = mkDefault false;
             };
             desktopManager.gnome.enable = true;
         };
@@ -28,6 +28,7 @@ in {
         environment = mkIf cfg.enable  {
             systemPackages = with pkgs; [
                 gnome.gnome-tweaks
+                gnome.gnome-screenshot
             ];
 
             # get rid of some of the worst bloat in gnome, reenable on demand

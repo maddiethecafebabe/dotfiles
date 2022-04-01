@@ -5,6 +5,7 @@ let
 in {
     imports = [
         ./gnome.nix
+        ./gayming
     ];
 
     options = {
@@ -15,6 +16,7 @@ in {
     };
 
     config = mkIf cfg.enable {
-        modules.desktop.gnome.enable = true;
+        modules.desktop.gnome.enable = mkDefault true;
+        modules.desktop.gayming.steam.enable = mkDefault true;
     };
 }
