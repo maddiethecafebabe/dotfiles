@@ -22,7 +22,7 @@ in {
     config = mkIf cfg.enable {
         modules.desktop = {
             gnome.enable = mkDefault true;
-            gayming.steam.enable = mkDefault true;
+            gayming.steam.enable = mkDefault false;
             home.enable = mkDefault true;
         };
 

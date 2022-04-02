@@ -3,6 +3,8 @@
 {
   nixpkgs.config.allowUnfree = true;
 
+  programs.nix-ld.enable = true;
+
   nix = {
     package = pkgs.nixUnstable;
     settings.auto-optimise-store = true;
