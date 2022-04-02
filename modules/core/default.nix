@@ -9,10 +9,19 @@ in {
             default = true;
         };
     };
-
-        imports = [
+        
+    imports = [
             ./nix.nix
             ./users.nix
             ./flatpak.nix
     ];
+
+    config = mkIf cfg.enable {
+        environment.systemPackages = with pkgs; [
+            git
+            vim
+            file
+            wget
+        ];
+    };
 }

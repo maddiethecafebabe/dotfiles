@@ -11,13 +11,13 @@
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 30d";
+      options = "--delete-older-than 21d";
     };
-    # Free up to 1GiB whenever there is less than 100MiB left.
+    # Free up to 4GiB whenever there is less than 100MiB left.
     extraOptions = ''
       experimental-features = nix-command flakes
       min-free = ${toString (100 * 1024 * 1024)}
-      max-free = ${toString (1024 * 1024 * 1024)}
+      max-free = ${toString (4 * 1024 * 1024 * 1024)}
     '';
   };
 }
