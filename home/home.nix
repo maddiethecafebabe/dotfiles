@@ -6,6 +6,7 @@
 
     imports = [
         ./dev
+        ./rofi.nix
         ./discord.nix
         ./bitwarden.nix
         ./wallpaper.nix

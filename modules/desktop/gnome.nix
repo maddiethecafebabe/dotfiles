@@ -25,6 +25,8 @@ in {
             desktopManager.gnome.enable = true;
         };
 
+        services.dbus.packages = [ pkgs.dconf ]; 
+
         programs.dconf.enable = true;
 
         environment = mkIf cfg.enable  {
