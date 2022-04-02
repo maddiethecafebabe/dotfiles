@@ -25,6 +25,8 @@ in {
             desktopManager.gnome.enable = true;
         };
 
+        programs.dconf.enable = true;
+
         environment = mkIf cfg.enable  {
             systemPackages = with pkgs; [
                 gnome.gnome-tweaks

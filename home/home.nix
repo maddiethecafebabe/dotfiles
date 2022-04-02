@@ -1,12 +1,14 @@
 { config, user, pkgs, ... }:
 
 {
-    imports = [
-      ./discord.nix
-    ];
-
     home.username = user.name;
     home.homeDirectory = user.home;
+
+    imports = [
+      ./discord.nix
+      ./bitwarden.nix
+      ./wallpaper.nix
+    ];
 
     home.packages = with pkgs; [ vim ];
     home.sessionVariables = {
