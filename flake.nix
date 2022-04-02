@@ -14,7 +14,7 @@
   with inputs.nixpkgs.lib;   
   let 
     overlays = {
-      nixpkgs.overlays = lists.flatten [ (import ./overlays) ];
+      nixpkgs.overlays = lists.flatten [ (import ./overlays) (import ./pkgs) ];
     };
 
     user = { name = "maddie"; home = "/home/mads"; full_name = "Madeline"; }; 

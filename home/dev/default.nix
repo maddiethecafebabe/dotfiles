@@ -8,6 +8,7 @@
         ./rust.nix
         ./cc.nix
         ./editor.nix
+        ./cs.nix
     ];
 
     home.packages = [ pkgs.git ];
