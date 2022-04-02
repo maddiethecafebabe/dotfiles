@@ -5,9 +5,10 @@
     home.homeDirectory = user.home;
 
     imports = [
-      ./discord.nix
-      ./bitwarden.nix
-      ./wallpaper.nix
+        ./dev
+        ./discord.nix
+        ./bitwarden.nix
+        ./wallpaper.nix
     ];
 
     home.packages = with pkgs; [ vim ];
