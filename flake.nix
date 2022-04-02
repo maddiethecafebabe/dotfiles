@@ -9,26 +9,43 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  # yeah this is totally valid syntax, trust me
-  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, ... }: 
-  with inputs.nixpkgs.lib; let overlays = {
-    nixpkgs.overlays = lists.flatten [ (import ./overlays) ];
-  }; user = { name = "maddie"; home = "/home/mads"; full_name = "Madeline"; }; 
-  mkSystem = args @ { host,  system ? "x86_64-linux"}: nixosSystem {
-      system = system;
-      modules = [
-        overlays
-        ./modules
-        ./hosts/${host}/configuration.nix
-      ];
-      specialArgs = {
-        inherit inputs;
-        user = user;
-      };
-  }; in {    
+  outputs = inputs @ { self, nixpkgs, home-manager, nixpkgs-unstable, ... }: 
+
+  with inputs.nixpkgs.lib;   
+  let 
+    overlays = {
+      nixpkgs.overlays = lists.flatten [ (import ./overlays) ];
+    };
+
+    user = { name = "maddie"; home = "/home/mads"; full_name = "Madeline"; }; 
+    
+    # make a function for all this boilerplate
+    mkSystem = args @ { host, server ? false,  system ? "x86_64-linux"}: nixosSystem {
+        system = system;
+        modules = [
+          overlays
+          ./modules
+          ./hosts/${host}/configuration.nix
+        ] ++ optionals (!server) [
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users."${user.name}" = import ./home/home.nix;
+
+              home-manager.extraSpecialArgs = { user = user; };
+            }
+        ];
+
+        specialArgs = {
+          inherit inputs;
+          user = user;
+        };
+    }; 
+  in {    
     nixosConfigurations = {
       yukata = mkSystem { host = "yukata"; };
-      seifuku = mkSystem { host = "seifuku"; system = "aarch64-linux"; };
+      seifuku = mkSystem { host = "seifuku"; server = true; system = "aarch64-linux"; };
       kimono = mkSystem { host = "kimono"; };
     };
   };
