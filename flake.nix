@@ -33,7 +33,10 @@
               home-manager.useUserPackages = true;
               home-manager.users."${user.name}" = import ./home/home.nix;
 
-              home-manager.extraSpecialArgs = { user = user; };
+              home-manager.extraSpecialArgs = { 
+                user = user;
+                inherit inputs; 
+              };
             }
         ];
 
