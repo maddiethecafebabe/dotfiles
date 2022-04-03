@@ -6,7 +6,7 @@ in {
     imports = [
         ./gnome.nix
         ./gayming
-        ./home.nix
+        ./flatpak.nix
     ];
 
     options = {
@@ -23,7 +23,7 @@ in {
         modules.desktop = {
             gnome.enable = mkDefault true;
             gayming.steam.enable = mkDefault false;
-            home.enable = mkDefault true;
+            flatpak.enable = mkDefault true;
         };
 
         # xdg-open will behave weird (read: open websites in gnome text editor)
