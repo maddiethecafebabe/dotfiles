@@ -5,7 +5,6 @@ let
 in {
     imports = [
         ./gnome.nix
-        ./gayming
         ./flatpak.nix
     ];
 
@@ -22,7 +21,6 @@ in {
     config = mkIf cfg.enable {
         modules.desktop = {
             gnome.enable = mkDefault true;
-            gayming.steam.enable = mkDefault false;
             flatpak.enable = mkDefault true;
         };
 
@@ -30,6 +28,7 @@ in {
         # if no browser is installed so lets just do it here
         environment.systemPackages = with pkgs; [
             firefox
+            pavucontrol
         ];
     };
 }

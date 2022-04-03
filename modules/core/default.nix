@@ -13,7 +13,6 @@ in {
     imports = [
             ./nix.nix
             ./users.nix
-            ./flatpak.nix
     ];
 
     config = mkIf cfg.enable {
