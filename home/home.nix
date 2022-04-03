@@ -4,7 +4,7 @@
     imports = [
         ./dev
         ./media
-        ./art.nix
+        ./art
         ./rofi.nix
         ./discord.nix
         ./bitwarden.nix
