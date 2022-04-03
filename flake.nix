@@ -35,7 +35,7 @@
 
               home-manager.extraSpecialArgs = { 
                 user = user;
-                inherit inputs; 
+                inherit inputs;
               };
             }
         ];

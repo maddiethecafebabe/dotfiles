@@ -2,7 +2,7 @@
 theyre not special, but theyre mine
 
 # installation
-1. look at ./hosts/<host>/readme.md for specific steps for the respective host
+1. look at ./hosts/$HOST/readme.md for specific steps for the respective host
 2. clone this repository to the machine
 3. run nix-shell
 4. run ./build-host.sh
@@ -15,4 +15,6 @@ but you should do
 ```sh
 nixos-install --impure --root /mnt --flake .#<host>
 ```
-instead for the first time
+instead for the first time, then after a reboot logged in as the non-root user it wont hurt
+doing a `./build-host.sh` so symlinks for config get created, though that is more or less
+optional
