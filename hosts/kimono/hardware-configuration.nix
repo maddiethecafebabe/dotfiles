@@ -44,6 +44,7 @@
         "subvol=/"
         "nofail"
         "noatime"
+        "nodiratime"
         "rw"
         "exec"
       ];
