@@ -2,7 +2,7 @@
 
 {
     home.packages = with pkgs; [ 
-        deadbeef
-        lmms # gamedev
+        vlc
+        mpv
     ];
 }
