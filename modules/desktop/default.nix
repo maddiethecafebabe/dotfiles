@@ -24,11 +24,15 @@ in {
             flatpak.enable = mkDefault true;
         };
 
+        services.mullvad-vpn.enable = true;
+
         # xdg-open will behave weird (read: open websites in gnome text editor)
         # if no browser is installed so lets just do it here
         environment.systemPackages = with pkgs; [
             firefox
             pavucontrol
+            mullvad-vpn
+            deluge
         ];
     };
 }
