@@ -15,10 +15,7 @@ let
     };
 in {
     home.packages = with pkgs; [
-        libresprite
-        krita
         wine
-        winetricks
         sai2
     ];
 
