@@ -23,7 +23,5 @@ in {
     ];
 
     # TODO: thats a hack but idk how to best bundle icons
-    home.file = {
-        ".local/share/icons/sai2.png".source = ./sai2.png;
-    };
+    home.file.".local/share/icons/sai2.png".source = ./sai2.png;
 }
