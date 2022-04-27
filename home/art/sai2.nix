@@ -1,4 +1,5 @@
-# i use sai2 too but i cant really bundle it as a package (commercial + needs device unique license file next to it)
+# i use sai2 too but i cant really bundle it as a package (commercial 
+# + needs device unique license file next to it which doesnt play nice when everything in the nix store is readonly)
 # so this will just expect ~/.local/Tools/Art/sai2/sai2.exe to be present
 
 { home, pkgs, user, ... }:
@@ -14,7 +15,7 @@ let
         icon = "sai2";
     };
 in {
-    home.packages = with pkgs; [
+    home.packages = [
         wine
         sai2
     ];
