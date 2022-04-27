@@ -19,6 +19,10 @@
         packages = with pkgs; [ vim tmux ];
 
         sessionVariables = { "EDITOR" = "vim"; };
+
+        shellAliases = {
+            "with" = "nix-shell -p";
+        };
     };
 
     programs.home-manager.enable = true;
