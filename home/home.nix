@@ -16,7 +16,7 @@
         homeDirectory = user.home;
         stateVersion = "22.05";
 
-        packages = [ pkgs.vim ];
+        packages = with pkgs; [ vim tmux ];
 
         sessionVariables = { "EDITOR" = "vim"; };
     };

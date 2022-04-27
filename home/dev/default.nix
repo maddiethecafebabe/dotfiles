@@ -9,6 +9,7 @@
         ./cc.nix
         ./editor.nix
         ./cs.nix
+        ./python.nix
     ];
 
     home.packages = [ pkgs.git ];
