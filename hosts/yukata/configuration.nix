@@ -12,12 +12,6 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub.useOSProber = true;
 
-  programs.zsh.enable = true;
-
-  environment.variables = {
-    EDITOR = "vim";
-  };
-
   modules.desktop.enable = true;
 
   # Set your time zone.
@@ -32,13 +26,6 @@
   networking.wireless.iwd.enable = true;
   networking.networkmanager.wifi.backend = "iwd";
   networking.hostName = "yukata";
-
-  environment.systemPackages = with pkgs; [
-     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-     wget
-     firefox
-     git
-  ];
 
   services.openssh.enable = true;
   system.stateVersion = "21.11"; # Did you read the comment?
