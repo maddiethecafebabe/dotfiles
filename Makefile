@@ -11,3 +11,8 @@ yukata:
 
 seifuku:
 	$(NIXCC) .#seifuku
+
+git:
+	git add .
+	git commit
+	git push
