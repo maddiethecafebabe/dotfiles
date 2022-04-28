@@ -11,8 +11,8 @@ in {
     };
         
     imports = [
-            ./nix.nix
-            ./users.nix
+        ./nix.nix
+        ./users.nix
     ];
 
     config = mkIf cfg.enable {

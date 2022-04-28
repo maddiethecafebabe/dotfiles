@@ -1,3 +1,3 @@
 self: super: {
-    # name = super.callPackage ./name {};
+    mkdirenv = super.callPackage ./mkdirenv.nix {};
 }
