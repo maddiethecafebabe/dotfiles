@@ -33,6 +33,7 @@ in {
             systemPackages = with pkgs; [
                 gnome.gnome-tweaks
                 gnome.gnome-screenshot
+                gnomeExtensions.vertical-overview
             ];
 
             # get rid of some of the worst bloat in gnome, reenable on demand

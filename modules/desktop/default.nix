@@ -5,6 +5,7 @@ let
 in {
     imports = [
         ./gnome.nix
+        ./pipewire.nix
         ./flatpak.nix
     ];
 
@@ -22,6 +23,7 @@ in {
         modules.desktop = {
             gnome.enable = mkDefault true;
             flatpak.enable = mkDefault true;
+            pipewire.enable = mkDefault true;
         };
 
         services.mullvad-vpn.enable = true;
