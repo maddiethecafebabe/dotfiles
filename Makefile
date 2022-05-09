@@ -1,4 +1,4 @@
-NIXCC := nixos-rebuild switch --impure --use-remote-sudo --flake
+NIXCC := nixos-rebuild switch --use-remote-sudo --flake
 
 host:
 	$(NIXCC) .
