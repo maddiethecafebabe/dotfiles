@@ -21,6 +21,7 @@ in {
             vim
             file
             wget
+            tmux
         ];
     };
 }

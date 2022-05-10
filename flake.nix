@@ -12,15 +12,26 @@
   outputs = inputs @ { self, nixpkgs, home-manager, nixpkgs-unstable, ... }: 
 
   with inputs.nixpkgs.lib;   
-  let 
-    overlays = {
-      nixpkgs.overlays = lists.flatten [ (import ./overlays) (import ./pkgs) ];
-    };
-
+  let
     user = { name = "maddie"; home = "/home/mads"; full_name = "Madeline"; }; 
     
     # make a function for all this boilerplate
-    mkSystem = args @ { host, server ? false,  system ? "x86_64-linux"}: nixosSystem {
+    mkSystem = args @ { host, server ? false,  system ? "x86_64-linux"}:
+    let
+      unstable-overlay = final: prev: {
+        unstable = import inputs.nixpkgs-unstable {
+          inherit system;
+          config.allowUnfree = true;
+        };
+      };
+      pkgs = import inputs.nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
+      overlays = {
+        nixpkgs.overlays = lists.flatten [ (unstable-overlay) (import ./overlays) (import ./pkgs) ];
+      };
+    in nixosSystem {
         system = system;
         modules = [
           overlays
@@ -45,7 +56,7 @@
           user = user;
         };
     }; 
-  in {    
+  in {
     nixosConfigurations = {
       yukata = mkSystem { host = "yukata"; };
       seifuku = mkSystem { host = "seifuku"; server = true; system = "aarch64-linux"; };

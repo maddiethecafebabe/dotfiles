@@ -7,6 +7,7 @@ in {
         ./gnome.nix
         ./pipewire.nix
         ./flatpak.nix
+        ./virtualisation.nix
     ];
 
     options = {

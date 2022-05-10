@@ -12,7 +12,10 @@ yukata:
 seifuku:
 	$(NIXCC) .#seifuku
 
+garbage-collect:
+	sudo nix-collect-garbage -d
+	$(MAKE)
+
 git:
 	git add .
 	git commit
-	git push

@@ -15,8 +15,12 @@
   networking.hostName = "kimono"; # Define your hostname.
 
   modules.desktop.enable = true;
+  modules.desktop.virtualisation.enable = true;
 
   time.timeZone = "Europe/Berlin";
+
+  hardware.opengl.enable = true;
+  hardware.opengl.driSupport32Bit = true;
 
   # Configure keymap in X11
   # services.xserver.layout = "us";

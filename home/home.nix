@@ -16,7 +16,7 @@
         homeDirectory = user.home;
         stateVersion = "22.05";
 
-        packages = with pkgs; [ vim tmux mkdirenv direnv ];
+        packages = with pkgs; [ vim tmux mkdirenv direnv unstable.itch obs-studio ];
 
         sessionVariables = { "EDITOR" = "vim"; };
 
