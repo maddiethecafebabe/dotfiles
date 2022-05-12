@@ -34,6 +34,7 @@ in {
                 gnome.gnome-tweaks
                 gnome.gnome-screenshot
                 gnomeExtensions.vertical-overview
+                gnome3.adwaita-icon-theme
             ];
 
             # get rid of some of the worst bloat in gnome, reenable on demand
