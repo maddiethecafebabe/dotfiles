@@ -16,6 +16,10 @@ in {
       options = "--delete-older-than 21d";
     };
 
+    # this pins the nixpkgs channel thats used by e.g. nix-shell
+    # to the unstable channel that the system flake uses. 
+    # this is supposed to prevent non-installed applications from failing to
+    # e.g. initialise opengl
     nixPath = [
         "nixpkgs=${nixpkgsPath}"
         "/nix/var/nix/profiles/per-user/root/channels"
@@ -24,10 +28,9 @@ in {
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
-
-    
   };
 
+  # belongs to the above pinning
   systemd.tmpfiles.rules = [
       "L+ ${nixpkgsPath}     - - - - ${unstable}"
     ];
