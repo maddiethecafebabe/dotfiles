@@ -20,29 +20,19 @@
   time.timeZone = "Europe/Berlin";
 
   hardware.opengl.enable = true;
+  hardware.opengl.driSupport = true;
   hardware.opengl.driSupport32Bit = true;
 
-  # Configure keymap in X11
-  # services.xserver.layout = "us";
-  # services.xserver.xkbOptions = "eurosign:e";
+  boot.initrd.kernelModules = [ "amdgpu" ];
 
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
+  hardware.opengl.extraPackages = with pkgs; [
+    mesa.drivers
+    rocm-opencl-icd
+    rocm-opencl-runtime
+    clinfo
+  ];
 
-  # Enable sound.
-  # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+  environment.systemPackages = [ pkgs.glxinfo ];
 
   services.openssh.enable = true;
 

@@ -1,6 +1,8 @@
 { pkgs, ... }:
-
-{
+let
+  base = "/etc/nixpkgs/channels";
+  nixpkgsPath = "${base}/nixpkgs";
+in {
   nixpkgs.config.allowUnfree = true;
 
   programs.nix-ld.enable = true;
@@ -13,6 +15,12 @@
       dates = "weekly";
       options = "--delete-older-than 21d";
     };
+
+    nixPath = [
+        "nixpkgs=${nixpkgsPath}"
+        "/nix/var/nix/profiles/per-user/root/channels"
+    ];
+
     # Free up to 4GiB whenever there is less than 100MiB left.
     extraOptions = ''
       experimental-features = nix-command flakes
