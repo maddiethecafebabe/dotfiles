@@ -1,4 +1,4 @@
-{ pkgs, unstable, ... }:
+{ pkgs, inputs, ... }:
 let
   base = "/etc/nixpkgs/channels";
   nixpkgsPath = "${base}/nixpkgs";
@@ -32,6 +32,6 @@ in {
 
   # belongs to the above pinning
   systemd.tmpfiles.rules = [
-      "L+ ${nixpkgsPath}     - - - - ${unstable}"
+      "L+ ${nixpkgsPath}     - - - - ${inputs.unstable}"
     ];
 }

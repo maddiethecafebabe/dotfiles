@@ -45,7 +45,7 @@
               home-manager.users."${user.name}" = import ./home/home.nix;
 
               home-manager.extraSpecialArgs = { 
-                user = user;
+                inherit user;
                 inherit inputs;
               };
             }
@@ -53,8 +53,7 @@
 
         specialArgs = {
           inherit inputs;
-          unstable = inputs.unstable;
-          user = user;
+          inherit user;
         };
     }; 
   in {
