@@ -3,13 +3,13 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    nixpkgs-unstable.url = "nixpkgs/nixpkgs-unstable";
+    unstable.url = "nixpkgs/nixpkgs-unstable";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     home-manager.url = "github:rycee/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, nixpkgs-unstable, ... }: 
+  outputs = inputs @ { self, nixpkgs, home-manager, unstable, ... }: 
 
   with inputs.nixpkgs.lib;   
   let
@@ -19,7 +19,7 @@
     mkSystem = args @ { host, server ? false,  system ? "x86_64-linux"}:
     let
       unstable-overlay = final: prev: {
-        unstable = import inputs.nixpkgs-unstable {
+        unstable = import inputs.unstable {
           inherit system;
           config.allowUnfree = true;
         };
@@ -53,6 +53,7 @@
 
         specialArgs = {
           inherit inputs;
+          unstable = inputs.unstable;
           user = user;
         };
     }; 

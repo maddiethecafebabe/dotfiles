@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, unstable, ... }:
 let
   base = "/etc/nixpkgs/channels";
   nixpkgsPath = "${base}/nixpkgs";
@@ -21,11 +21,14 @@ in {
         "/nix/var/nix/profiles/per-user/root/channels"
     ];
 
-    # Free up to 4GiB whenever there is less than 100MiB left.
     extraOptions = ''
       experimental-features = nix-command flakes
-      min-free = ${toString (100 * 1024 * 1024)}
-      max-free = ${toString (4 * 1024 * 1024 * 1024)}
     '';
+
+    
   };
+
+  systemd.tmpfiles.rules = [
+      "L+ ${nixpkgsPath}     - - - - ${unstable}"
+    ];
 }
