@@ -1,14 +1,14 @@
 { home, pkgs, user, ... }:
 
 let
-    python = pkgs.python3.withPackages (p: with p; [
+    python3 = pkgs.python3.withPackages (p: with p; [
         pandas
         numpy
         requests
     ]);
 in {
     home = {
-        packages = [ python ];
+        packages = [ python3 ];
 
         shellAliases = {
             "python" = "python3";
@@ -19,7 +19,7 @@ in {
         ];
 
         sessionVariables = {
-            "PYTHONPATH" = "${python}/${python.sitePackages}";
+            "PYTHONPATH" = "${python3}/${python3.sitePackages}";
         };
     };
 }
