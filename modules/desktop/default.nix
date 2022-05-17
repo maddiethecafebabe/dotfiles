@@ -8,6 +8,7 @@ in {
         ./pipewire.nix
         ./flatpak.nix
         ./virtualisation.nix
+        ./activate-linux.nix
     ];
 
     options = {
@@ -25,6 +26,7 @@ in {
             gnome.enable = mkDefault true;
             flatpak.enable = mkDefault true;
             pipewire.enable = mkDefault true;
+            activate-linux.enable = mkDefault false;
         };
 
         services.mullvad-vpn.enable = true;
