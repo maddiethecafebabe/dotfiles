@@ -5,16 +5,20 @@
 
 with lib;
 let 
-    cfg = config.modules.desktop.emacs;
+    cfg = config.modules.editors.emacs;
 in {
-  options.modules.desktop.emacs = {
+  options.modules.editors.emacs = {
     enable = mkOption { 
         default = false;
         type = types.bool;
     };
+    default = mkOption {
+            default = false;
+            type = types.bool;
+    };
     doom = rec {
       enable = mkOption {
-          default = true;
+          default = cfg.enable;
           type = types.bool;
       };
       repoUrl = mkOption { type = types.str; default = "https://github.com/hlissner/doom-emacs"; };
@@ -23,6 +27,10 @@ in {
   };
 
   config = mkIf cfg.enable {
+    environment.variables = mkIf cfg.default {
+      "EDITOR" = "emacs";
+    };
+
     nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
 
     environment.systemPackages = with pkgs; [
@@ -61,17 +69,17 @@ in {
       unstable.fava  # HACK Momentarily broken on nixos-unstable
     ];
 
-    environment.sessionVariables.PATH = [ "$XDG_CONFIG_HOME/emacs/bin" ];
+    environment.sessionVariables.PATH = [ "$HOME/.emacs.d/bin" ];
 
     # modules.shell.zsh.rcFiles = [ "${configDir}/emacs/aliases.zsh" ];
 
     fonts.fonts = [ pkgs.emacs-all-the-icons-fonts ];
 
     system.userActivationScripts = mkIf cfg.doom.enable {
-      installDoomEmacs = ''
-        if [ ! -d "$XDG_CONFIG_HOME/emacs" ]; then
-           git clone --depth=1 --single-branch "${cfg.doom.repoUrl}" "$XDG_CONFIG_HOME/emacs"
-           git clone "${cfg.doom.configRepoUrl}" "$XDG_CONFIG_HOME/doom"
+      installDoomEmacs = with pkgs; ''
+        if [ ! -d "$HOME/.emacs.d" ]; then
+           ${git}/bin/git clone --depth=1 --single-branch "${cfg.doom.repoUrl}" "$HOME/.emacs.d"
+           # ${git}/bin/git clone "${cfg.doom.configRepoUrl}" "$XDG_CONFIG_HOME/doom"
         fi
       '';
     };

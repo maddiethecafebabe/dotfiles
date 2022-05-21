@@ -12,14 +12,14 @@
     agenix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, unstable, ... }: 
+  outputs = inputs @ { self, nixpkgs, home-manager, unstable, nixos-hardware, ... }: 
 
   with inputs.nixpkgs.lib;   
   let
     user = { name = "maddie"; home = "/home/mads"; full_name = "Madeline"; }; 
     
     # make a function for all this boilerplate
-    mkSystem = args @ { host, server ? false,  system ? "x86_64-linux"}:
+    mkSystem = args @ { host, modules ? [], server ? false,  system ? "x86_64-linux"}:
     let
       unstable-overlay = final: prev: {
         unstable = import inputs.unstable {
@@ -36,7 +36,7 @@
       };
     in nixosSystem {
         system = system;
-        modules = [
+        modules = modules ++ [
           overlays
           ./modules
           ./hosts/${host}/configuration.nix
@@ -60,9 +60,18 @@
         };
     }; 
   in {
+    nixosModules = {
+      # modules = (import ./modules);
+    };
+
     nixosConfigurations = {
       yukata = mkSystem { host = "yukata"; };
-      seifuku = mkSystem { host = "seifuku"; server = true; system = "aarch64-linux"; };
+      seifuku = mkSystem {
+        host = "seifuku";
+        server = true;
+        modules = [ nixos-hardware.nixosModules.raspberry-pi-4 ];
+        system = "aarch64-linux";
+      };
       kimono = mkSystem { host = "kimono"; };
     };
   };

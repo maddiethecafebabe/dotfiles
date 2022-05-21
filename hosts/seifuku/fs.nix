@@ -6,7 +6,10 @@
   fileSystems."/mnt/Besenkammer" =
     { device = "/dev/disk/by-uuid/3d37d0bc-c7d2-4004-84fc-52dafec9c851";
       fsType = "btrfs";
-      options = [
+      options = let
+        automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+      in [
+        "${automount_opts}"
         "noatime"
         "nodiratime"
         "defaults"

@@ -4,6 +4,7 @@
     ./hardware
     ./desktop
     ./core
+    ./editors
   ];
 
   # make sure unfree packages are allowed on the stable side

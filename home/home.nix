@@ -27,11 +27,8 @@
 
     programs.home-manager.enable = true;
     programs.bash = {
-        enable = true;
+        enable = false;
 
-        # home-manager doesnt source this automatically
-        # which means we have to do it ourselves or everything
-        # shell related defined in home-manager wont get applied...
-        bashrcExtra = "source $HOME/.profile";
+        bashrcExtra = ". $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh";
     };
 }

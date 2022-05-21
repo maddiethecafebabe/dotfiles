@@ -10,7 +10,6 @@ in {
         ./virtualisation.nix
         ./gaming
         ./activate-linux.nix
-        ./emacs.nix
     ];
 
     options = {
@@ -29,7 +28,6 @@ in {
             flatpak.enable = mkDefault true;
             pipewire.enable = mkDefault true;
             activate-linux.enable = mkDefault false;
-            emacs.enable = mkDefault true;
         };
 
         services.mullvad-vpn.enable = true;
@@ -42,5 +40,9 @@ in {
             mullvad-vpn
             deluge
         ];
+
+        environment.variables = {
+            BROWSER = "firefox";
+        };
     };
 }
