@@ -6,9 +6,18 @@ in {
     imports = [
         ./emacs.nix
         ./vim.nix
+        ./vscode.nix
     ];
 
-    options = {};
+    options.modules.editors = {
+        enable-all = mkOption { type = types.bool; default = false; };
+    };
 
-    config = {};
+    config = {
+        modules.editors = {
+            vim.enable = mkDefault cfg.enable-all;
+            emacs.enable = mkDefault cfg.enable-all;
+            vscode.enable = mkDefault cfg.enable-all;
+        };
+    };
 }

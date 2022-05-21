@@ -36,7 +36,6 @@ in {
 
             opt_source "$HOME/.profile"
             opt_source "/etc/profiles/per-user/$USER/etc/profile.d/hm-session-vars.sh"
-            opt_source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
         '';
 
         # This value determines the NixOS release from which the default

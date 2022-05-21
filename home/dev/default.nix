@@ -7,7 +7,6 @@
     imports = [
         ./rust.nix
         ./cc.nix
-        ./editor.nix
         ./cs.nix
         ./python.nix
     ];

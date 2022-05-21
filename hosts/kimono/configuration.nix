@@ -14,10 +14,7 @@
             enable = true;
             virtualisation.enable = true;
         };
-        editors = {
-            emacs.enable = true;
-            vim.enable = true;
-        };
+        editors.enable-all = true;
     };
 
     boot.initrd.kernelModules = [ "amdgpu" ];

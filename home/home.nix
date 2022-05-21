@@ -27,8 +27,7 @@
 
     programs.home-manager.enable = true;
     programs.bash = {
-        enable = false;
-
+        enable = true;
         bashrcExtra = ". $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh";
     };
 }
