@@ -7,6 +7,7 @@ pkgs.mkShell {
     git
     nixFlakes
     vim
+    gnumake
   ];
 
   shellHook = ''

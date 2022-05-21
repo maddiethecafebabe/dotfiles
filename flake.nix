@@ -7,6 +7,9 @@
     nixos-hardware.url = "github:nixos/nixos-hardware";
     home-manager.url = "github:rycee/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    emacs-overlay.url  = "github:nix-community/emacs-overlay";
+    agenix.url = "github:ryantm/agenix";
+    agenix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs @ { self, nixpkgs, home-manager, unstable, ... }: 

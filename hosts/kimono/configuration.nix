@@ -16,7 +16,6 @@
 
   modules.desktop.enable = true;
   modules.desktop.virtualisation.enable = true;
-  modules.desktop.activate-linux.enable = true;
 
   time.timeZone = "Europe/Berlin";
 
