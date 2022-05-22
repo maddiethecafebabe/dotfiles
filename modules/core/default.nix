@@ -46,6 +46,11 @@ in {
             opt_source "/etc/profiles/per-user/$USER/etc/profile.d/hm-session-vars.sh"
         '';
 
+        networking.extraHosts =
+        ''
+            192.168.0.100 seifuku.local
+        '';
+
         # This value determines the NixOS release from which the default
         # settings for stateful data, like file locations and database versions
         # on your system were taken. It‘s perfectly fine and recommended to leave
