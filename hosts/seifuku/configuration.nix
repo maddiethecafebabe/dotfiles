@@ -12,9 +12,9 @@
     ];
 
     modules = {
-      core.boot = {
-        systemd-boot.enable = false;
+      core = {
         nix-ld.enable = false;
+        boot.systemd-boot.enable = false;
       };
       desktop.enable = false;
     };
