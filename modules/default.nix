@@ -5,6 +5,7 @@
     ./desktop
     ./core
     ./editors
+    ./server
   ];
 
   # make sure unfree packages are allowed on the stable side
