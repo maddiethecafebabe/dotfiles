@@ -26,6 +26,10 @@ in {
                 enable = true;
                 domain = "sonarr.${domain}";
             };
+            server = {
+                enable = true;
+                domain = "radarr.${domain}";
+            };
         };
     };
 

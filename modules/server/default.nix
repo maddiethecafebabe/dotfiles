@@ -6,6 +6,7 @@ in {
     imports = [
         ./jellyfin.nix
         ./sonarr.nix
+        ./radarr.nix
     ];
 
     options.modules.server = {};
