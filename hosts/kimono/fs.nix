@@ -23,7 +23,7 @@
     };
 
   fileSystems."/mnt/Besenkammer" = {
-    device = "//192.168.0.100/Besenkammer";
+    device = "//seifuku.local/Besenkammer";
     fsType = "cifs";
     options = let
       # this line prevents hanging on network split

@@ -19,6 +19,7 @@
       desktop.enable = false;
       server = {
         jellyfin.enable = true;
+        sonarr.enable = true;
       };
     };
 

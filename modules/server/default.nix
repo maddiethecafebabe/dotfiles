@@ -5,6 +5,7 @@ let
 in {
     imports = [
         ./jellyfin.nix
+        ./sonarr.nix
     ];
 
     options.modules.server = {};
