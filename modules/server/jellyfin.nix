@@ -28,7 +28,7 @@ in {
 
                 virtualHosts."media.seifuku.local" = {
                     addSSL = true;
-                    enableACME = true;
+                    #enableACME = true;
                     locations."/" = {
                         proxyPass = "http://localhost:8096";
                     };
