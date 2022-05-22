@@ -13,7 +13,7 @@
 
     modules = {
       core = {
-        systemd.enable = false;
+        systemd-boot.enable = false;
         nix-ld.enable = false;
       };
       desktop.enable = false;
