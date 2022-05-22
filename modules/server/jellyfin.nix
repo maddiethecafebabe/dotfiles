@@ -11,6 +11,33 @@ in {
     };
 
     config = mkIf cfg.enable {
-        services.jellyfin.enable = true;
+        services = {
+            jellyfin = {
+                enable = true;
+                openFirewall = true;
+            };
+            nginx = {
+                enable = true;
+                recommendedGzipSettings = true;
+                recommendedOptimisation = true;
+                recommendedProxySettings = true;
+                recommendedTlsSettings = true;
+
+                virtualHosts."media.seifuku.local" = {
+                    addSSL = true;
+                    enableACME = true;
+                    locations."/" = {
+                        proxyPass = "http://localhost:8096";
+                    };
+                };
+            };
+        };
+
+        security.acme = {
+            acceptTerms = true;
+            certs = {
+                "media.seifuku.local".email = "maddie@cafebabe.date";
+            };
+        };
     };
 }
