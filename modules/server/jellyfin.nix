@@ -66,7 +66,7 @@ in {
                         };
                     };
 
-                    "${cfg.subDomain}.${cfg.domain}/" = {
+                    "${cfg.subDomain}.${cfg.domain}" = {
                         addSSL = cfg.enableSsl;
                         enableACME = cfg.enableSsl;
                         locations."/" = {
