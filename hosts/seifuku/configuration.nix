@@ -17,6 +17,9 @@
         boot.systemd-boot.enable = false;
       };
       desktop.enable = false;
+      server = {
+        jellyfin.enable = true;
+      };
     };
 
     networking = {

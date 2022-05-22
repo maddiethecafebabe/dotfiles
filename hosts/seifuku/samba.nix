@@ -5,7 +5,7 @@
     enable = true;
     openFirewall = true;
     
-    shares = lib.warn "samba: make sure to create the user accounts" {
+    shares = {
       "Besenkammer" = {
         path = "/mnt/Besenkammer";
         browsable = "yes";
