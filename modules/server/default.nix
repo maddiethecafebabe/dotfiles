@@ -9,7 +9,20 @@ in {
         ./radarr.nix
     ];
 
-    options.modules.server = {};
+    options.modules.server = {
+        acmeEmail = mkOption {
+            type = types.str;
+        };
+
+        domain = mkOption {
+            type = types.str;
+        };
+
+        enableSsl = mkOption {
+            type = types.bool;
+            default = false;
+        };
+    };
 
     config = {};
 }

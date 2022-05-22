@@ -47,10 +47,10 @@ in {
             opt_source "/etc/profiles/per-user/$USER/etc/profile.d/hm-session-vars.sh"
         '';
 
-        #networking.extraHosts =
-        #''
-        #    192.168.0.100 seifuku.local media.seifuku.local
-        #'';
+        networking.extraHosts =
+        ''
+            seifuku.local media.seifuku.local radarr.seifuku.local sonarr.seifuku.local
+        '';
 
         # This value determines the NixOS release from which the default
         # settings for stateful data, like file locations and database versions

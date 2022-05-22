@@ -1,6 +1,7 @@
 { config, pkgs, lib, modules, ... }:
 
 let
+    acmeEmail = "maddie@cafebabe.date";
     hostName = "seifuku";
     domain = "${hostName}.local";
 in {
@@ -18,18 +19,12 @@ in {
         };
         desktop.enable = false;
         server = {
-            jellyfin = {
-                enable = true;
-                domain = "media.${domain}";
-            };
-            sonarr = {
-                enable = true;
-                domain = "sonarr.${domain}";
-            };
-            radarr = {
-                enable = true;
-                domain = "radarr.${domain}";
-            };
+            inherit domain acmeEmail;
+            enableSsl = false;
+
+            jellyfin.enable = true;
+            sonarr.enable = true;
+            radarr.enable = true;
         };
     };
 
