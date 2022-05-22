@@ -36,11 +36,6 @@ in {
             };
         };
 
-        security.acme = {
-            acceptTerms = true;
-            certs = {
-                "sonarr.seifuku.local".email = "maddie@cafebabe.date";
-            };
-        };
+        #security.acme.certs."sonarr.seifuku.local".email = "maddie@cafebabe.date";
     };
 }
