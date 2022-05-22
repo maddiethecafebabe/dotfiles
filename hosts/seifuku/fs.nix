@@ -8,11 +8,10 @@
       fsType = "btrfs";
       options = let
         automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+        performance_opts = "noatime,nodiratime";
       in [
         "${automount_opts}"
-        "noatime"
-        "nodiratime"
-        "defaults"
+        "${performance_opts}"
         "nofail"
         "acl"
       ];

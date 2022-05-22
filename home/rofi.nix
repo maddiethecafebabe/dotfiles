@@ -1,4 +1,4 @@
-{ home, pkgs, lib, ... }:
+{ home, pkgs, lib, modules, ... }:
 with lib;
 let
     syscfg = modules.desktop.gnome;

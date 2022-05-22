@@ -2,7 +2,7 @@
   { config, pkgs, lib, modules, ... }:
 
   let
-    hostname = "seifuku";
+    hostName = "seifuku";
   in {
     imports = [
 	    ./hardware-configuration.nix
@@ -15,7 +15,7 @@
     modules.desktop.enable = false;
 
     networking = {
-      hostName = hostname;
+      inherit hostName;
       wireless = {
         enable = true;
         userControlled.enable = true;

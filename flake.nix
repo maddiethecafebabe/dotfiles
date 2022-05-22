@@ -19,7 +19,7 @@
     user = { name = "maddie"; home = "/home/mads"; full_name = "Madeline"; }; 
     
     # make a function for all this boilerplate
-    mkSystem = args @ { host, modules ? [], server ? false,  system ? "x86_64-linux"}:
+    mkSystem = args @ { host, extraModules ? [], server ? false,  system ? "x86_64-linux"}:
     let
       unstable-overlay = final: prev: {
         unstable = import inputs.unstable {
@@ -36,7 +36,7 @@
       };
     in nixosSystem {
         system = system;
-        modules = modules ++ [
+        modules = extraModules ++ [
           overlays
           ./modules
           ./hosts/${host}/configuration.nix
@@ -47,7 +47,7 @@
               home-manager.useUserPackages = true;
               home-manager.users."${user.name}" = import ./home/home.nix;
 
-              home-manager.extraSpecialArgs = { 
+              home-manager.extraSpecialArgs = {
                 inherit user;
                 inherit inputs;
               };
@@ -69,7 +69,7 @@
       seifuku = mkSystem {
         host = "seifuku";
         server = true;
-        modules = [ nixos-hardware.nixosModules.raspberry-pi-4 ];
+        extraModules = [ nixos-hardware.nixosModules.raspberry-pi-4 ];
         system = "aarch64-linux";
       };
       kimono = mkSystem { host = "kimono"; };
