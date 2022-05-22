@@ -18,8 +18,14 @@
       };
       desktop.enable = false;
       server = {
-        jellyfin.enable = true;
-        sonarr.enable = true;
+        jellyfin = {
+          enable = true;
+          domain = "media.seifuku.local";
+        };
+        sonarr = {
+          enable = true;
+          domain = "sonarr.seifuku.local";
+        };
       };
     };
 
