@@ -11,8 +11,10 @@
       ./samba.nix
     ];
 
-    # where we are going we wont need no graphics
-    modules.desktop.enable = false;
+    modules = {
+      core.nix-ld.enable = false;
+      desktop.enable = false;
+    };
 
     networking = {
       inherit hostName;

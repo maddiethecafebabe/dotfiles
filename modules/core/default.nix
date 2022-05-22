@@ -3,8 +3,13 @@ with lib;
 let
     cfg = config.modules.core;
 in {
-    options = {
-        modules.core.enable = mkOption {
+    options.modules.core = {
+        enable = mkOption {
+            type = types.bool;
+            default = true;
+        };
+
+        nix-ld.enable = mkOption {
             type = types.bool;
             default = true;
         };
@@ -28,6 +33,8 @@ in {
             wget
             tmux
         ];
+
+        programs.nix-ld.enable = cfg.nix-ld.enable;
 
         programs.bash.shellInit = ''
             opt_source() {
