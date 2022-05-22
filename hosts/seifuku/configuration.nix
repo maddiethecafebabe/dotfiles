@@ -2,6 +2,7 @@
 
 let
     hostName = "seifuku";
+    domain = "${hostName}.local";
 in {
     imports = [
         ./hardware-configuration.nix
@@ -19,11 +20,11 @@ in {
         server = {
             jellyfin = {
                 enable = true;
-                domain = "media.seifuku.local";
+                domain = "media.${domain}";
             };
             sonarr = {
                 enable = true;
-                domain = "sonarr.seifuku.local";
+                domain = "sonarr.${domain}";
             };
         };
     };
