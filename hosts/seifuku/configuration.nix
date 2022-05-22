@@ -12,7 +12,10 @@
     ];
 
     modules = {
-      core.nix-ld.enable = false;
+      core = {
+        systemd.enable = false;
+        nix-ld.enable = false;
+      };
       desktop.enable = false;
     };
 
