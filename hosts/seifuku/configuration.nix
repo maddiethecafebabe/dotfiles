@@ -12,7 +12,7 @@
     ];
 
     modules = {
-      core = {
+      core.boot = {
         systemd-boot.enable = false;
         nix-ld.enable = false;
       };
