@@ -27,7 +27,7 @@ in {
                 recommendedTlsSettings = true;
 
                 virtualHosts."media.seifuku.local" = {
-                    addSSL = true;
+                    # addSSL = true;
                     #enableACME = true;
                     locations."/" = {
                         proxyPass = "http://localhost:8096";
@@ -36,6 +36,6 @@ in {
             };
         };
 
-        #security.acme.certs."sonarr.seifuku.local".email = "maddie@cafebabe.date";
+        # security.acme.certs."sonarr.seifuku.local".email = "maddie@cafebabe.date";
     };
 }

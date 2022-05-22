@@ -27,7 +27,7 @@ in {
                 recommendedTlsSettings = true;
 
                 virtualHosts."sonarr.seifuku.local" = {
-                    addSSL = true;
+                    # addSSL = true;
                     # enableACME = true;
                     locations."/" = {
                         proxyPass = "http://localhost:8989";
