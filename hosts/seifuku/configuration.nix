@@ -26,7 +26,7 @@ in {
                 enable = true;
                 domain = "sonarr.${domain}";
             };
-            server = {
+            radarr = {
                 enable = true;
                 domain = "radarr.${domain}";
             };
