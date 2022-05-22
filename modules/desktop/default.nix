@@ -28,6 +28,7 @@ in {
             flatpak.enable = mkDefault true;
             pipewire.enable = mkDefault true;
             activate-linux.enable = mkDefault false;
+            gaming.enable = mkDefault true;
         };
 
         services.mullvad-vpn.enable = true;
