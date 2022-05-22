@@ -48,7 +48,7 @@ in {
 
         networking.extraHosts =
         ''
-            192.168.0.100 seifuku.local
+            192.168.0.100 seifuku.local media.seifuku.local
         '';
 
         # This value determines the NixOS release from which the default
