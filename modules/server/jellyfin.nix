@@ -68,6 +68,8 @@ in {
                             proxyPass = "http://localhost:${cfg.port}";
                         };
                     };
+
+                    
                 };
             };
         };
