@@ -15,6 +15,8 @@ in {
             jellyfin = {
                 enable = true;
                 openFirewall = true;
+
+                # give it access to my mounts
                 group = "users";
             };
             nginx = {
