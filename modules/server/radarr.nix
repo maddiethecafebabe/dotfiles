@@ -42,7 +42,6 @@ in {
                 virtualHosts."${cfg.domain}" = {
                     addSSL = cfg.enableSsl;
                     enableACME = cfg.enableSsl;
-                    listenAddresses = [ "127.0.0.1" "::1" ];
                     locations."/" = {
                         proxyPass = "http://localhost:7878";
                     };
