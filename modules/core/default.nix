@@ -21,6 +21,7 @@ in {
         ./xdg.nix
         ./ssh.nix
         ./boot.nix
+        ./avahi.nix
     ];
 
     config = mkIf cfg.enable {
@@ -46,10 +47,10 @@ in {
             opt_source "/etc/profiles/per-user/$USER/etc/profile.d/hm-session-vars.sh"
         '';
 
-        networking.extraHosts =
-        ''
-            192.168.0.100 seifuku.local media.seifuku.local
-        '';
+        #networking.extraHosts =
+        #''
+        #    192.168.0.100 seifuku.local media.seifuku.local
+        #'';
 
         # This value determines the NixOS release from which the default
         # settings for stateful data, like file locations and database versions
