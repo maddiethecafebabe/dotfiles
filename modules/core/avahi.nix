@@ -1,3 +1,6 @@
+# avahi makes my machines reachable in the local network
+# as <hostname>.local, its pretty neat
+
 { config, lib, pkgs, ... }:
 with lib;
 let
