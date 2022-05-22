@@ -73,8 +73,8 @@ in {
         };
 
         security.acme.certs = mkIf cfg.enableSsl {
-            "${cfg.domain}".email = mkIf cfg.enableSsl "${acmeEmail}";
-            "${cfg.subDomain}".email = mkIf cfg.enableSsl "${acmeEmail}";
+            "${cfg.domain}".email = cfg.acmeEmail;
+            "${cfg.subDomain}.${cfg.domain}".email = cfg.acmeEmail;
         };
     };
 }
