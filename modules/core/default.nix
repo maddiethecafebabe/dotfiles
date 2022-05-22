@@ -32,6 +32,7 @@ in {
             file
             wget
             tmux
+            gnumake
         ];
 
         programs.nix-ld.enable = cfg.nix-ld.enable;
