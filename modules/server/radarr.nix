@@ -56,9 +56,15 @@ in {
                     "${cfg.domain}" = {
                         addSSL = cfg.enableSsl;
                         enableACME = cfg.enableSsl;
-                        locations."/${cfg.subDomain}" = {
-                            proxyPass = "http://localhost:${cfg.port}";
+                        locations = {
+                            "= /${cfg.subDomain}" = {
+                                return = "302 /${cfg.subDomain}/";
+                            };
+                            "/${cfg.subDomain}/" = {
+                                proxyPass = "http://localhost:${cfg.port}/";
+                            };
                         };
+
                     };
 
                     "${cfg.subDomain}.${cfg.domain}" = {

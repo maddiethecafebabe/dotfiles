@@ -25,8 +25,7 @@ in {
     };
 
     config = {
-          # Allowed TCP range
-  networking.firewall.allowedTCPPorts = [ 80 443 37586 ];
-
+        # Allowed TCP range
+        networking.firewall.allowedTCPPorts = [ 80 443 ];
     };
 }
