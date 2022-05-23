@@ -3,6 +3,7 @@ with lib;
 let
     serverCfg = config.modules.server;
     cfg = config.modules.server.jellyfin;
+    port = "8096";
 in {
     options.modules.server.jellyfin = {
         enable = mkOption {
@@ -18,11 +19,6 @@ in {
         subDomain = mkOption {
             type = types.str;
             default = "media";
-        };
-
-        port = mkOption {
-            type = types.str;
-            default = "8096";
         };
 
         acmeEmail = mkOption {
@@ -53,34 +49,18 @@ in {
                 recommendedTlsSettings = true;
 
                 virtualHosts = {
-                    "${cfg.domain}" = {
-                        addSSL = cfg.enableSsl;
-                        enableACME = cfg.enableSsl;
-                        locations = {
-                            "= /${cfg.subDomain}" = {
-                                return = "302 /${cfg.subDomain}/";
-                            };
-                            "/${cfg.subDomain}/" = {
-                                proxyPass = "http://localhost:${cfg.port}/";
-                            };
-                        };
-                    };
-
                     "${cfg.subDomain}.${cfg.domain}" = {
                         addSSL = cfg.enableSsl;
                         enableACME = cfg.enableSsl;
                         locations."/" = {
-                            proxyPass = "http://localhost:${cfg.port}";
+                            proxyPass = "http://localhost:${port}";
                         };
-                    };
-
-                    
+                    };                    
                 };
             };
         };
 
         security.acme.certs = mkIf cfg.enableSsl {
-            "${cfg.domain}".email = cfg.acmeEmail;
             "${cfg.subDomain}.${cfg.domain}".email = cfg.acmeEmail;
         };
     };

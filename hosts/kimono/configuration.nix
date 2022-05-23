@@ -15,6 +15,14 @@
             virtualisation.enable = true;
         };
         editors.enable-all = true;
+        server = {
+            acmeEmail = "maddie@cafebabe.date";
+            domain = "kimono.local";
+            enableSsl = true;
+
+            # sonarr.enable = true;
+            radarr.enable = true;
+        };
     };
 
     boot.initrd.kernelModules = [ "amdgpu" ];

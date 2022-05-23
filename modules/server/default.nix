@@ -24,8 +24,11 @@ in {
         };
     };
 
-    config = {
+    config =  {
+        
+
         # Allowed TCP range
         networking.firewall.allowedTCPPorts = [ 80 443 ];
+        security.acme.acceptTerms = true;
     };
 }

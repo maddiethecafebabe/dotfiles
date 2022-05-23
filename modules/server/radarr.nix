@@ -3,6 +3,7 @@ with lib;
 let
     serverCfg = config.modules.server;
     cfg = config.modules.server.radarr;
+    port = "7878";
 in {
     options.modules.server.radarr = {
         enable = mkOption {
@@ -18,11 +19,6 @@ in {
         subDomain = mkOption {
             type = types.str;
             default = "radarr";
-        };
-
-        port = mkOption {
-            type = types.str;
-            default = "7878";
         };
 
         acmeEmail = mkOption {
@@ -53,25 +49,11 @@ in {
                 recommendedTlsSettings = true;
 
                 virtualHosts = {
-                    "${cfg.domain}" = {
-                        addSSL = cfg.enableSsl;
-                        enableACME = cfg.enableSsl;
-                        locations = {
-                            "= /${cfg.subDomain}" = {
-                                return = "302 /${cfg.subDomain}/";
-                            };
-                            "/${cfg.subDomain}/" = {
-                                proxyPass = "http://localhost:${cfg.port}/";
-                            };
-                        };
-
-                    };
-
                     "${cfg.subDomain}.${cfg.domain}" = {
                         addSSL = cfg.enableSsl;
                         enableACME = cfg.enableSsl;
                         locations."/" = {
-                            proxyPass = "http://localhost:${cfg.port}";
+                            proxyPass = "http://localhost:${port}";
                         };
                     };
                 };
@@ -79,7 +61,6 @@ in {
         };
 
         security.acme.certs = mkIf cfg.enableSsl {
-            "${cfg.domain}".email = cfg.acmeEmail;
             "${cfg.subDomain}.${cfg.domain}".email = cfg.acmeEmail;
         };
     };
