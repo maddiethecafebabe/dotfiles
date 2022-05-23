@@ -18,7 +18,7 @@
         server = {
             acmeEmail = "maddie@cafebabe.date";
             domain = "kimono.local";
-            enableSsl = true;
+            enableSsl = false;
 
             # sonarr.enable = true;
             radarr.enable = true;
