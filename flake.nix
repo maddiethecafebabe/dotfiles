@@ -40,6 +40,7 @@
           overlays
           ./modules
           ./hosts/${host}/configuration.nix
+          # inputs.agenix.nixosModule
         ] ++ optionals (!server) [
             home-manager.nixosModules.home-manager
             {
@@ -48,15 +49,13 @@
               home-manager.users."${user.name}" = import ./home/home.nix;
 
               home-manager.extraSpecialArgs = {
-                inherit user;
-                inherit inputs;
+                inherit inputs user;
               };
             }
         ];
 
         specialArgs = {
-          inherit inputs;
-          inherit user;
+          inherit inputs user;
         };
     }; 
   in {
