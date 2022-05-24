@@ -10,6 +10,11 @@ in {
     ];
 
     options.modules.server = {
+        enable = mkOption {
+            type = types.bool;
+            default = false;
+        };
+
         acmeEmail = mkOption {
             type = types.str;
         };
@@ -24,11 +29,14 @@ in {
         };
     };
 
-    config =  {
-        
-
-        # Allowed TCP range
+    config = cfg.enable {
         networking.firewall.allowedTCPPorts = [ 80 443 ];
-        security.acme.acceptTerms = true;
+
+        security.acme = mkIf cfg.enableSsl {
+            acceptTerms = true;
+            certs = {
+                "${cfg.domain}".email = cfg.acmeEmail;
+            };
+        };
     };
 }
