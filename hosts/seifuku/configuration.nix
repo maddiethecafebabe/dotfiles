@@ -21,7 +21,7 @@ in {
         server = {
             inherit domain acmeEmail;
             enable = true;
-            enableSsl = true;
+            enableSsl = false;
 
             jellyfin.enable = true;
             sonarr.enable = true;
