@@ -29,7 +29,7 @@ in {
         };
     };
 
-    config = cfg.enable {
+    config = mkIf cfg.enable {
         networking.firewall.allowedTCPPorts = [ 80 443 ];
 
         security.acme = mkIf cfg.enableSsl {
