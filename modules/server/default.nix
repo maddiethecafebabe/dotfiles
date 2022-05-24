@@ -32,6 +32,15 @@ in {
     config = mkIf cfg.enable {
         networking.firewall.allowedTCPPorts = [ 80 443 ];
 
+        services.nginx = {
+            enable = cfg.enable;
+            
+            virtualHosts."${cfg.domain}" = {
+                addSSL = cfg.enableSsl;
+                enableACME = cfg.enableSsl;
+            };    
+        };
+
         security.acme = mkIf cfg.enableSsl {
             acceptTerms = true;
             certs = {
