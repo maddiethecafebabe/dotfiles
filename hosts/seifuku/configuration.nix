@@ -20,7 +20,7 @@ in {
         desktop.enable = false;
         server = {
             inherit domain acmeEmail;
-            enableSsl = false;
+            enableSsl = true;
 
             jellyfin.enable = true;
             sonarr.enable = true;
