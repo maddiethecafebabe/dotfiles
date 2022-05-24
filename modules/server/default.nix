@@ -36,6 +36,7 @@ in {
             enable = cfg.enable;
             
             virtualHosts."${cfg.domain}" = {
+                default = true;
                 addSSL = cfg.enableSsl;
                 enableACME = cfg.enableSsl;
             };    
