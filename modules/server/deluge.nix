@@ -13,7 +13,7 @@ in {
             declarative = true;
             authFile = "/secrets/deluge-authfile.txt";
             web = {
-                enable = tue;
+                enable = true;
             };
         };
     };
