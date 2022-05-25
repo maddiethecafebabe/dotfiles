@@ -2,6 +2,9 @@
 seifuku is my raspi4, mostly used as a samba/sshfs share and for running
 certain small things like web scrapers
 
+hint: nixos takes quite a bit of space, so your sd card should be *at the very least* 16GiB big and even then, expect to constantly be at less than 2gb free space. 
+if you want a smaller pi distro use minimal raspbian or ubuntu server
+
 # installation
 1. pick a somewhat up to date image from [here](https://hydra.nixos.org/job/nixos/trunk-combined/nixos.sd_image.aarch64-linux)
 2. `unzstd -d <path/to/iso>` 
