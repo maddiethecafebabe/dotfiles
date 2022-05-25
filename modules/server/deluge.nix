@@ -6,7 +6,6 @@ in {
     options = {};
 
     config = {
-        services.mullvad-vpn.enable = true;
 
         services.deluge = {
             enable = true;
