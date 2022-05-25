@@ -11,7 +11,7 @@ in {
         services.deluge = {
             enable = true;
             declarative = true;
-            
+            authFile = "/secrets/deluge-authfile.txt";
             web = {
                 enable = tue;
             };
