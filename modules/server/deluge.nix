@@ -11,7 +11,6 @@ in {
             enable = true;
             declarative = true;
             openFirewall = true;
-            port = 8112;
             config = {
                 allow_remote = true;
             };
