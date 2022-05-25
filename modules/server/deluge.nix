@@ -10,9 +10,15 @@ in {
         services.deluge = {
             enable = true;
             declarative = true;
+            openFirewall = true;
+            port = 8112;
+            config = {
+                allow_remote = true;
+            };
             authFile = "/secrets/deluge-authfile.txt";
             web = {
                 enable = true;
+                openFirewall = true;
             };
         };
     };
