@@ -7,6 +7,7 @@ in {
         ./jellyfin.nix
         ./sonarr.nix
         ./radarr.nix
+        ./deluge.nix
     ];
 
     options.modules.server = {
