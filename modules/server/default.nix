@@ -44,9 +44,7 @@ in {
 
         security.acme = mkIf cfg.enableSsl {
             acceptTerms = true;
-            certs = {
-                "${cfg.domain}".email = cfg.acmeEmail;
-            };
+            certs."${cfg.domain}".email = cfg.acmeEmail;
         };
     };
 }

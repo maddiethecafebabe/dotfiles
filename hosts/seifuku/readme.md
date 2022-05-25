@@ -7,4 +7,10 @@ certain small things like web scrapers
 2. `unzstd -d <path/to/iso>` 
 3. flash it to your favourite sd (e.g. `sudo dd if=path/to/iso of=/dev/<sd> conv=fsync status=progress bs=4096`)
 4. put sd into your pi and boot
-5. read [this](https://nix.dev/tutorials/installing-nixos-on-a-raspberry-pi), then continue with the root readme.md
+5. read [this](https://nix.dev/tutorials/installing-nixos-on-a-raspberry-pi)
+6. nixos-install --flake seems to be broken on raspi atleast, so use a temp system for boootstrapping: 
+    ```sh
+    curl -L https://tinyurl.com/nixos-rpi4-tutorial | sudo tee /etc/nixos/configuration.nix
+    sudo nixos-install --root /
+    ```
+7. on the next boot, proceed with the root readme's step 2
