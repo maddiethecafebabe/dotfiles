@@ -25,5 +25,7 @@
         };
     };
 
+    environment.systemPackages = with pkgs; [ ];
+
     boot.initrd.kernelModules = [ "amdgpu" ];
 }
