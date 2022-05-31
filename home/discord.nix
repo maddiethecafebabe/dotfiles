@@ -14,6 +14,6 @@ in {
     # the latter happens quite often with nix on the canary package
     home.file = {
         ".config/discord/settings.json".text = settingsText;
-        ".config/discord-canary/settings.json".text = settingsText;
+        ".config/discordcanary/settings.json".text = settingsText;
     };
 }
