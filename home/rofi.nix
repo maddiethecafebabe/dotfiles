@@ -18,7 +18,7 @@ in {
 
             theme = "solarized";
         };
-
+    } // {
         # TODO: figure out a way to access my system configuration from in here
         #       and make this only take effect when syscfg.gnome.enable
         dconf.settings = {

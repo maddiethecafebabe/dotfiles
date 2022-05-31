@@ -54,6 +54,23 @@
         "type": "github"
       }
     },
+    "grab-bag": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1653995098,
+        "narHash": "sha256-bOFekWTyFWO9ihKnUqAutgxaFnNgDi+ttuOhV5sO3lo=",
+        "type": "git",
+        "url": "file:///mnt/Shared/Dev/nix-grab-bag"
+      },
+      "original": {
+        "type": "git",
+        "url": "file:///mnt/Shared/Dev/nix-grab-bag"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -123,6 +140,7 @@
       "inputs": {
         "agenix": "agenix",
         "emacs-overlay": "emacs-overlay",
+        "grab-bag": "grab-bag",
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",

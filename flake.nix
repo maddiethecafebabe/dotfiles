@@ -10,9 +10,14 @@
     emacs-overlay.url  = "github:nix-community/emacs-overlay";
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
+
+    grab-bag = {
+      url = "/mnt/Shared/Dev/nix-grab-bag";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, unstable, nixos-hardware, ... }: 
+  outputs = inputs @ { self, nixpkgs, home-manager, unstable, nixos-hardware, grab-bag, ... }: 
 
   with inputs.nixpkgs.lib;   
   let
@@ -21,22 +26,26 @@
     # make a function for all this boilerplate
     mkSystem = args @ { host, extraModules ? [], server ? false,  system ? "x86_64-linux"}:
     let
-      unstable-overlay = final: prev: {
+      myOverlays = final: prev: {
         unstable = import inputs.unstable {
           inherit system;
           config.allowUnfree = true;
         };
+        grab-bag = grab-bag.overlays.default final prev;
       };
       pkgs = import inputs.nixpkgs {
         inherit system;
         config.allowUnfree = true;
       };
-      overlays = {
-        nixpkgs.overlays = lists.flatten [ (unstable-overlay) (import ./overlays) (import ./pkgs) ];
-      };
+      overlays.nixpkgs.overlays = lists.flatten [
+        (myOverlays)
+        (import ./overlays)
+        (import ./pkgs)
+      ];
     in nixosSystem {
         system = system;
         modules = extraModules ++ [
+          (grab-bag.nixosModules.default)
           overlays
           ./modules
           ./hosts/${host}/configuration.nix

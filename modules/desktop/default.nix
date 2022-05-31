@@ -1,4 +1,4 @@
-{ lib, config, modules, pkgs, ... }:
+{ lib, config, modules, pkgs, user, grab-bag, ... }:
 with lib;
 let 
     cfg = config.modules.desktop;
@@ -9,7 +9,6 @@ in {
         ./flatpak.nix
         ./virtualisation.nix
         ./gaming
-        ./activate-linux.nix
     ];
 
     options = {
@@ -27,7 +26,6 @@ in {
             gnome.enable = mkDefault true;
             flatpak.enable = mkDefault true;
             pipewire.enable = mkDefault true;
-            activate-linux.enable = mkDefault false;
             gaming.enable = mkDefault true;
         };
 

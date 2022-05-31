@@ -1,13 +1,12 @@
-{ home, pkgs, makeDesktopItem, ... }:
+{ home, pkgs, user, ... }:
 
 {
-    imports = [
-        ./sai2.nix
-    ];
+    imports = [ ];
 
     home.packages = with pkgs; [
         libresprite
         krita
-        MagicaVoxel
+        grab-bag.MagicaVoxel
+        (grab-bag.sai2.override { executable = "${user.home}/.local/Tools/Art/sai2/sai2.exe"; })
     ];
 }
