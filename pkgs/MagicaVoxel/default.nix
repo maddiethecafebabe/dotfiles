@@ -3,13 +3,16 @@
 , fetchzip
 , fetchurl
 , makeDesktopItem
+, wine ? null
 , wineWowPackages
 }:
 
 let 
     pname = "MagicaVoxel";
     version = "0.99.7";
-    wine = wineWowPackages.stable;
+    winever = if wine == null 
+                then wineWowPackages.stable
+                else wine;
     src = fetchzip {
         url = "https://github.com/ephtracy/ephtracy.github.io/releases/download/${version}/MagicaVoxel-${version}.0-win64.zip";
         sha256 = "sha256-zsU/N004RswYHt0ZFKzboTu4362APRbKLHs97rNPCPM=";
@@ -21,7 +24,7 @@ let
     magica-voxel-desktop = makeDesktopItem {
         name = "MagicaVoxel";
         desktopName = "MagicaVoxel";
-        exec = "${wine}/bin/wine ${src}/MagicaVoxel.exe";
+        exec = "${winever}/bin/wine ${src}/MagicaVoxel.exe";
         categories = [ "Art" "Graphics" ];
         icon = "${icon}";
     };
