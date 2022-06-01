@@ -33,6 +33,8 @@ in {
     };
 
     config = mkIf cfg.enable {
+        environment.systemPackages = [ pkgs.imagemagick ];
+
         services = {
             paperless = {
                 enable = true;
