@@ -12,7 +12,8 @@
     agenix.inputs.nixpkgs.follows = "nixpkgs";
 
     grab-bag = {
-      url = "/mnt/Shared/Dev/nix-grab-bag";
+      url = "github:maddiethecafebabe/nix-grab-bag";
+      # url = "/mnt/Shared/Dev/nix-grab-bag";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
