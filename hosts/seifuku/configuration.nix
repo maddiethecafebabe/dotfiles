@@ -3,7 +3,7 @@
 let
     acmeEmail = "maddie@cafebabe.date";
     hostName = "seifuku";
-    domain = "wagu.cafebabe.date";
+    domain = "${hostName}.local";
 in {
     imports = [
         ./hardware-configuration.nix

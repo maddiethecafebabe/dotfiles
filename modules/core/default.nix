@@ -49,7 +49,7 @@ in {
 
         networking.extraHosts =
         ''
-            192.168.0.100   media.seifuku.local radarr.seifuku.local sonarr.seifuku.local
+            192.168.0.100   media.seifuku.local radarr.seifuku.local sonarr.seifuku.local documents.seifuku.local
             127.0.0.1   sonarr.kimono.local
             ::1         sonarr.kimono.local
         '';
