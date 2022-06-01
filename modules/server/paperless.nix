@@ -41,8 +41,8 @@ in {
                 port = port;
                 passwordFile = mkDefault "/secrets/paperless-superuser-password";
                 extraConfig = {
-                    PAPERLESS_OCR_LANGUAGE = "deu+eng";
-                    PAPERLESS_FILENAME_FORMAT = "{created_year}/{correspondent}/{created_month}/{title}";
+                    PAPERLESS_OCR_LANGUAGE = mkDefault "deu+eng";
+                    PAPERLESS_FILENAME_FORMAT = mkDefault "{created_year}/{correspondent}/{created_month}/{title}";
                 };
             };
             nginx = {
