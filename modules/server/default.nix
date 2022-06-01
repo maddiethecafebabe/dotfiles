@@ -45,7 +45,7 @@ in {
                 default = true;
                 addSSL = cfg.enableSsl;
                 enableACME = cfg.enableSsl;
-            };    
+            };
         };
 
         security.acme = mkIf cfg.enableSsl {

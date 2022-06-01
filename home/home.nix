@@ -16,7 +16,7 @@
         homeDirectory = user.home;
         stateVersion = "22.05";
 
-        packages = with pkgs; [ mkdirenv direnv unstable.itch obs-studio ];
+        packages = with pkgs; [ mkdirenv direnv unstable.itch obs-studio wineWowPackages.stable ];
 
         sessionVariables = { "EDITOR" = "vim"; };
 
