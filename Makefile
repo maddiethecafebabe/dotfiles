@@ -14,6 +14,7 @@ seifuku: assure_grab_bag_up_to_date
 
 assure_grab_bag_up_to_date:
 	@nix flake lock --update-input grab-bag
+	git add . && git commit || true
 
 garbage-collect:
 	sudo nix-collect-garbage -d
