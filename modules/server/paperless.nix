@@ -33,8 +33,6 @@ in {
     };
 
     config = mkIf cfg.enable {
-        environment.etc."ImageMagick-x/policy.xml".text = "";
-
         services = {
             paperless = {
                 enable = true;
