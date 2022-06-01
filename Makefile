@@ -1,25 +1,24 @@
 NIXCC := nixos-rebuild switch --use-remote-sudo --flake
 
-host: assure_grab_bag_up_to_date
+host:
 	$(NIXCC) .
 
-kimono: assure_grab_bag_up_to_date
+kimono:
 	$(NIXCC) .#kimono
 
-yukata: assure_grab_bag_up_to_date
+yukata:
 	$(NIXCC) .#yukata
 
-seifuku: assure_grab_bag_up_to_date
+seifuku:
 	$(NIXCC) .#seifuku
 
-assure_grab_bag_up_to_date:
+ensure-update:
 	@nix flake lock --update-input grab-bag
-	git add . && git commit || true
 
 garbage-collect:
 	sudo nix-collect-garbage -d
 	$(MAKE)
 
-git: assure_grab_bag_up_to_date
+git: ensure-update
 	git add .
 	git commit
