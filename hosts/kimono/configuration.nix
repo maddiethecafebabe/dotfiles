@@ -22,6 +22,7 @@
 
             # sonarr.enable = true;
             radarr.enable = true;
+            paperless.enable = true;
         };
     };
 

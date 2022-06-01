@@ -2,10 +2,10 @@
 with lib;
 let
     serverCfg = config.modules.server;
-    cfg = config.modules.server.sonarr;
-    port = "8989";
+    cfg = config.modules.server.paperless;
+    port = 28981;
 in {
-    options.modules.server.sonarr = {
+    options.modules.server.paperless = {
         enable = mkOption {
             type = types.bool;
             default = false;
@@ -13,12 +13,12 @@ in {
 
         domain = mkOption {
             type = types.str;
-            default = serverCfg.domain;
+            default = config.modules.server.domain;
         };
 
         subDomain = mkOption {
             type = types.str;
-            default = "sonarr";
+            default = "documents";
         };
 
         acmeEmail = mkOption {
@@ -34,12 +34,9 @@ in {
 
     config = mkIf cfg.enable {
         services = {
-            sonarr = {
+            paperless = {
                 enable = true;
-                openFirewall = true;
-
-                # give it access to my mounts
-                group = "users";
+                port = port;
             };
             nginx = {
                 enable = true;
@@ -49,9 +46,9 @@ in {
                         addSSL = cfg.enableSsl;
                         enableACME = cfg.enableSsl;
                         locations."/" = {
-                            proxyPass = "http://localhost:${port}";
+                            proxyPass = "http://localhost:${toString port}";
                         };
-                    };
+                    };                    
                 };
             };
         };

@@ -8,6 +8,7 @@ in {
         ./sonarr.nix
         ./radarr.nix
         ./deluge.nix
+        ./paperless.nix
     ];
 
     options.modules.server = {
@@ -35,7 +36,11 @@ in {
 
         services.nginx = {
             enable = cfg.enable;
-            
+            recommendedGzipSettings = mkDefault true;
+            recommendedOptimisation = mkDefault true;
+            recommendedProxySettings = mkDefault true;
+            recommendedTlsSettings = mkDefault true;
+
             virtualHosts."${cfg.domain}" = {
                 default = true;
                 addSSL = cfg.enableSsl;

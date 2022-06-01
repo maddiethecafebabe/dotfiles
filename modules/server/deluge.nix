@@ -3,9 +3,14 @@ with lib;
 let 
     cfg = config.modules.server.deluge;
 in {
-    options = {};
+    options.modules.server.deluge = {
+        enable = mkOption {
+            type = types.bool;
+            default = false;
+        };
+    };
 
-    config = {
+    config = mkIf cfg.enable {
 
         services.deluge = {
             enable = true;
