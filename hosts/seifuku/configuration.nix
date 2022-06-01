@@ -26,6 +26,7 @@ in {
             jellyfin.enable = true;
             sonarr.enable = true;
             radarr.enable = true;
+            paperless.enable = true;
         };
     };
 
