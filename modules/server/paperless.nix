@@ -37,6 +37,7 @@ in {
             paperless = {
                 enable = true;
                 port = port;
+                passwordFile = mkDefault "/secrets/paperless-superuser-password";
             };
             nginx = {
                 enable = true;
