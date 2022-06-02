@@ -4,12 +4,13 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      
+      ./fs.nix
     ];
 
   modules = {
     core.user.ssh_keys = pubkeys.kimono;
     desktop.enable = true;
+    editors.vscode.enable = true;
   };
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.

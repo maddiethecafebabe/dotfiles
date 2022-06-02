@@ -22,6 +22,7 @@ in {
         ./boot.nix
         ./avahi.nix
         ./user.nix
+        ./security.nix
     ];
 
     config = mkIf cfg.enable {

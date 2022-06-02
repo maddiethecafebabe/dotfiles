@@ -7,7 +7,6 @@ let
 in {
     imports = [
         ./hardware-configuration.nix
-        ./security.nix
         ./fs.nix
         ./samba.nix
     ];

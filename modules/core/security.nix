@@ -4,7 +4,6 @@
 
 {
   services.openssh = {
-    enable = true;
     passwordAuthentication = false;
   };
 
@@ -56,6 +55,4 @@
     "net.core.default_qdisc" = "cake";
   };
   boot.kernelModules = [ "tcp_bbr" ];
-
-  security.acme.acceptTerms = true; 
 }
