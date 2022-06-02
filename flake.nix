@@ -32,7 +32,7 @@
     # make a function for all this boilerplate
     mkSystem = args @ { host, extraModules ? [], server ? false,  system ? "x86_64-linux"}:
     let
-      pubkeys = import ./pubkeys.nix;
+      pubkeys = import ./hosts/pubkeys.nix;
       myOverlays = final: prev: {
         unstable = import inputs.unstable {
           inherit system;
