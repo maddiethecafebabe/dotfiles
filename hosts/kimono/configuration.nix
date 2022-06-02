@@ -1,4 +1,4 @@
-{ config, pkgs, modules, ... }:
+{ config, pkgs, pubkeys, ... }:
 
 {
     imports =
@@ -10,6 +10,7 @@
     networking.hostName = "kimono"; # Define your hostname.
 
     modules = {
+        core.user.ssh_keys = pubkeys.yukata;
         desktop = {
             enable = true;
             virtualisation.enable = true;

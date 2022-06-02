@@ -70,7 +70,13 @@ in {
         };
     };
 
+    # alias
+    options.modules.core.user = mkOption { type = types.attrs; default = {}; };
+
     config = {
+        # alias 
+        user = config.modules.core.user;
+
         users = {
             mutableUsers = true;
             users."${cfg.name}" = {
@@ -87,6 +93,9 @@ in {
         };
 
         home-manager = mkIf cfg.home-manager.enable {
+            useGlobalPkgs = mkDefault true;
+            useUserPackages = mkDefault true;
+
             users."${cfg.name}" = {
                 home = {
                     username = cfg.name;

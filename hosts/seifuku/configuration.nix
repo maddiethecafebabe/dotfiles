@@ -1,4 +1,4 @@
-{ config, pkgs, lib, modules, ... }:
+{ config, pkgs, lib, modules, pubkeys, ... }:
 
 let
     acmeEmail = "maddie@cafebabe.date";
@@ -16,6 +16,7 @@ in {
         core = {
             nix-ld.enable = false;
             boot.systemd-boot.enable = false;
+            user.ssh_keys = pubkeys.workstations;
         };
         desktop.enable = false;
         dev.enable = false;

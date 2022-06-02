@@ -1,4 +1,4 @@
-{ config, pkgs, home-manager, modules, ... }:
+{ config, pkgs, pubkeys, ... }:
 
 {
   imports =
@@ -7,8 +7,10 @@
       
     ];
 
-  # Use the systemd-boot EFI boot loader.
-  modules.desktop.enable = true;
+  modules = {
+    core.user.ssh_keys = pubkeys.kimono;
+    desktop.enable = true;
+  };
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config

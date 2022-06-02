@@ -17,7 +17,6 @@ in {
         
     imports = [
         ./nix.nix
-        # ./users.nix
         ./xdg.nix
         ./ssh.nix
         ./boot.nix
