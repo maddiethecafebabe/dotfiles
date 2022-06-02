@@ -1,3 +1,5 @@
+# original keys, do not steal!!
+
 rec {
     kimono = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICC8gQF2UzYxgkK/QhmZN/ARfdYOkaJ10AuyoiyH+Vfr maddie@kimono-2022-06-02" ];
     seifuku = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG7R+ICMNoyiYtDHpb1CdC1BLgjwgAKQe4mtNePN7oVt maddie@seifuku-2022-06-02" ];
