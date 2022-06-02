@@ -6,9 +6,6 @@
     ./core
     ./editors
     ./server
+    ./dev
   ];
-
-  # make sure unfree packages are allowed on the stable side
-  # cause im currently not using any i think
-  environment.systemPackages = with pkgs; [ hello-unfree ];
 }

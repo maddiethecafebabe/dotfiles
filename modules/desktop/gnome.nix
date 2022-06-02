@@ -4,14 +4,23 @@
 with lib;
 let 
     cfg = config.modules.desktop.gnome;
+    default_wallpaper = pkgs.fetchurl {
+        url = "https://media.discordapp.net/attachments/836638993403084850/981776209341993021/wallpaper.png";
+        sha256 = "sha256-3HwaEw/UcGY1SqdZXA5fn3I8CriWftmwJ+VFzQ5/PmI=";
+    };
 in {
-    options = {
-        modules.desktop.gnome.enable = mkOption {
+    options.modules.desktop.gnome = {
+        enable = mkOption {
             type = types.bool;
             default = false;
             description = ''
                 GNOME time
             '';
+        };
+
+        wallpaper = mkOption {
+            type = types.str;
+            default = "${default_wallpaper}";
         };
     };
 
@@ -28,6 +37,16 @@ in {
         services.dbus.packages = [ pkgs.dconf ]; 
 
         programs.dconf.enable = true;
+
+        user.homeRaw.dconf.settings = {
+            "org/gnome/desktop/background" = {
+                "picture-uri" = "${cfg.wallpaper}";
+                "picture-uri-dark" = "${cfg.wallpaper}";
+            };
+            "org/gnome/desktop/screensaver" = {
+                "picture-uri" = "${cfg.wallpaper}";
+            };
+        };
 
         environment = mkIf cfg.enable  {
             systemPackages = with pkgs; [

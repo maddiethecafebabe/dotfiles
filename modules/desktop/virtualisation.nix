@@ -1,5 +1,5 @@
 
-{ pkgs, lib, config, user, ... }:
+{ pkgs, lib, config, ... }:
 with lib;
 let 
     cfg = config.modules.desktop.virtualisation;
@@ -34,7 +34,7 @@ in {
             "iommu=pt"
         ];
 
-        users.users."${user.name}".extraGroups = [ "libvirtd" ];
+        user.extraGroups = [ "libvirtd" ];
 
         environment.sessionVariables.VAGRANT_DEFAULT_PROVIDER = [ "libvirt" ];
         environment.sessionVariables.LIBVIRT_DEFAULT_URI = [ "qemu:///system" ];

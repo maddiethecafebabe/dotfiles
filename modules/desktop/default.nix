@@ -1,14 +1,18 @@
-{ lib, config, modules, pkgs, user, grab-bag, home-manager, ... }:
+{ lib, config, modules, pkgs, grab-bag, ... }:
 with lib;
 let 
     cfg = config.modules.desktop;
 in {
     imports = [
+        ./art
+        ./media
+        ./gaming
         ./gnome.nix
         ./pipewire.nix
         ./flatpak.nix
         ./virtualisation.nix
-        ./gaming
+        ./discord.nix
+        ./rofi.nix
     ];
 
     options = {
@@ -27,9 +31,11 @@ in {
             flatpak.enable = mkDefault true;
             pipewire.enable = mkDefault true;
             gaming.enable = mkDefault true;
+            rofi.enable = mkDefault true;
+            discord.enable = mkDefault true;
+            art.enable = mkDefault true;
+            media.enable = mkDefault true;
         };
-
-        # home-manager.users.maddie.home.packages = [ pkgs.hello ];
 
         services.mullvad-vpn.enable = true;
 
@@ -40,6 +46,9 @@ in {
             pavucontrol
             mullvad-vpn
             deluge
+            wineWowPackages.stable
+            obs-studio
+            bitwarden
         ];
 
         environment.variables = {

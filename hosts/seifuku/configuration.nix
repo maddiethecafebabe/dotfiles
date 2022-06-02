@@ -18,6 +18,7 @@ in {
             boot.systemd-boot.enable = false;
         };
         desktop.enable = false;
+        dev.enable = false;
         server = {
             inherit domain acmeEmail;
             enable = true;

@@ -1,7 +1,7 @@
 # pretty much everything in this folder is not actually meant
 # for dev directly, but i just like to adhoc do some coding in 
 # a folder and doing nix-shell -p ... would annoy me
-{ home, pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
     imports = [
@@ -11,5 +11,7 @@
         ./python.nix
     ];
 
-    home.packages = [ pkgs.git ];
+    options.modules.dev = with lib; {
+        enable = mkOption { type = types.bool; default = true; };
+    };
 }

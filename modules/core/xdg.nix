@@ -1,4 +1,4 @@
-{ lib, pkgs, home-manager, user, ... }:
+{ lib, pkgs, ... }:
 
 {
     xdg.mime = {

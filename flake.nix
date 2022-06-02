@@ -28,9 +28,7 @@
   outputs = inputs @ { self, nixpkgs, home-manager, unstable, nixos-hardware, grab-bag, ... }: 
 
   with inputs.nixpkgs.lib;   
-  let
-    user = { name = "maddie"; home = "/home/mads"; full_name = "Madeline"; }; 
-    
+  let    
     # make a function for all this boilerplate
     mkSystem = args @ { host, extraModules ? [], server ? false,  system ? "x86_64-linux"}:
     let
@@ -59,22 +57,10 @@
           ./modules
           ./hosts/${host}/configuration.nix
           # inputs.agenix.nixosModule
-        ]# ++ optionals (!server && false) [
-     #       home-manager.nixosModules.home-manager
-    #        {
-   #           home-manager.useGlobalPkgs = true;
-  #            home-manager.useUserPackages = true;
- #             home-manager.users."${user.name}" = import ./home/home.nix;
-#
-          #    home-manager.extraSpecialArgs = {
-          #      inherit inputs user;
-          #    };
-          #  }
-        #]
-        ;
+        ];
 
         specialArgs = {
-          inherit inputs user;
+          inherit inputs;
         };
     }; 
   in {

@@ -35,7 +35,11 @@ in {
             wget
             tmux
             gnumake
+            mkdirenv
+            direnv
         ];
+
+        environment.variables.EDITOR = "vim";
 
         programs.nix-ld.enable = cfg.nix-ld.enable;
 

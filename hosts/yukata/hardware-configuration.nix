@@ -39,8 +39,8 @@
         "${automount_opts}"
         "nofail"
         "credentials=/etc/samba/credentials-besenkammer"
-        "uid=${user.name}"
-        "gid=users"
+        "uid=${config.user.name}"
+        "gid=${config.user.group}"
       ];
   };
 
