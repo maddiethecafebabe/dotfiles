@@ -21,9 +21,7 @@
             domain = "kimono.local";
             enableSsl = false;
 
-            # sonarr.enable = true;
-            radarr.enable = true;
-            paperless.enable = true;
+            
         };
     };
 
