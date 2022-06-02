@@ -17,11 +17,12 @@ in {
         
     imports = [
         ./nix.nix
-        ./users.nix
+        # ./users.nix
         ./xdg.nix
         ./ssh.nix
         ./boot.nix
         ./avahi.nix
+        ./user.nix
     ];
 
     config = mkIf cfg.enable {

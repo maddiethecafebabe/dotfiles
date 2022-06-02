@@ -5,11 +5,18 @@
     nixpkgs.url = "nixpkgs/nixos-unstable";
     unstable.url = "nixpkgs/nixpkgs-unstable";
     nixos-hardware.url = "github:nixos/nixos-hardware";
-    home-manager.url = "github:rycee/home-manager/master";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
     emacs-overlay.url  = "github:nix-community/emacs-overlay";
-    agenix.url = "github:ryantm/agenix";
-    agenix.inputs.nixpkgs.follows = "nixpkgs";
+
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    home-manager = {
+      url = "github:rycee/home-manager/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     grab-bag = {
       url = "github:maddiethecafebabe/nix-grab-bag";
@@ -46,23 +53,25 @@
     in nixosSystem {
         system = system;
         modules = extraModules ++ [
-          (grab-bag.nixosModules.default)
+          grab-bag.nixosModules.default
+          home-manager.nixosModules.home-manager
           overlays
           ./modules
           ./hosts/${host}/configuration.nix
           # inputs.agenix.nixosModule
-        ] ++ optionals (!server) [
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users."${user.name}" = import ./home/home.nix;
-
-              home-manager.extraSpecialArgs = {
-                inherit inputs user;
-              };
-            }
-        ];
+        ]# ++ optionals (!server && false) [
+     #       home-manager.nixosModules.home-manager
+    #        {
+   #           home-manager.useGlobalPkgs = true;
+  #            home-manager.useUserPackages = true;
+ #             home-manager.users."${user.name}" = import ./home/home.nix;
+#
+          #    home-manager.extraSpecialArgs = {
+          #      inherit inputs user;
+          #    };
+          #  }
+        #]
+        ;
 
         specialArgs = {
           inherit inputs user;

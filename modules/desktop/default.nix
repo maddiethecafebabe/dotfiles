@@ -1,4 +1,4 @@
-{ lib, config, modules, pkgs, user, grab-bag, ... }:
+{ lib, config, modules, pkgs, user, grab-bag, home-manager, ... }:
 with lib;
 let 
     cfg = config.modules.desktop;
@@ -28,6 +28,8 @@ in {
             pipewire.enable = mkDefault true;
             gaming.enable = mkDefault true;
         };
+
+        # home-manager.users.maddie.home.packages = [ pkgs.hello ];
 
         services.mullvad-vpn.enable = true;
 
