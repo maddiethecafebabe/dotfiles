@@ -1,4 +1,4 @@
-{ lib, cfg, serverCfg, port }:
+{ lib, cfg, serverCfg, port, forceSSL ? true }:
 with lib;
 {
     services.nginx = {
@@ -14,6 +14,7 @@ with lib;
             }  // optionalAttrs (serverCfg.ssl.enable && !serverCfg.ssl.acme.enable) {
                 sslCertificate = serverCfg.ssl.self.cert;
                 sslCertificateKey = serverCfg.ssl.self.key;
+                inherit forceSSL;
             };
         };
     };
