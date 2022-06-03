@@ -17,11 +17,17 @@
         };
         editors.enable-all = true;
         server = {
-            acmeEmail = "maddie@cafebabe.date";
             domain = "kimono.local";
-            enableSsl = false;
 
-            
+            ssl = {
+                enable = true;
+                self = {
+                    key = "/secrets/kimono/priv.key";
+                    cert = "/secrets/kimono/cert.crt";
+                };
+            };
+
+            sonarr.enable = true;
         };
     };
 

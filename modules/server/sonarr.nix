@@ -4,6 +4,7 @@ let
     serverCfg = config.modules.server;
     cfg = config.modules.server.sonarr;
     port = "8989";
+    mkVhost = import ./mkSimpleNginxVhost.nix;
 in {
     options.modules.server.sonarr = {
         enable = mkOption {
@@ -20,44 +21,17 @@ in {
             type = types.str;
             default = "sonarr";
         };
-
-        acmeEmail = mkOption {
-            type = types.str;
-            default = serverCfg.acmeEmail;
-        };
-
-        enableSsl = mkOption {
-            type = types.bool;
-            default = serverCfg.enableSsl;
-        };
     };
 
-    config = mkIf cfg.enable {
-        services = {
-            sonarr = {
+    config = mkIf cfg.enable (recursiveUpdate {
+            services.sonarr = {
                 enable = true;
                 openFirewall = true;
 
                 # give it access to my mounts
                 group = "users";
             };
-            nginx = {
-                enable = true;
-
-                virtualHosts = {
-                    "${cfg.subDomain}.${cfg.domain}" = {
-                        addSSL = cfg.enableSsl;
-                        enableACME = cfg.enableSsl;
-                        locations."/" = {
-                            proxyPass = "http://localhost:${port}";
-                        };
-                    };
-                };
-            };
-        };
-
-        security.acme.certs = mkIf cfg.enableSsl {
-            "${cfg.subDomain}.${cfg.domain}".email = cfg.acmeEmail;
-        };
-    };
+        }
+        (mkVhost { inherit lib cfg serverCfg port; })
+    );
 }

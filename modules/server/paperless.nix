@@ -4,6 +4,7 @@ let
     serverCfg = config.modules.server;
     cfg = config.modules.server.paperless;
     port = 28981;
+    mkVhost = import ./mkSimpleNginxVhost.nix;
 in {
     options.modules.server.paperless = {
         enable = mkOption {
@@ -20,21 +21,10 @@ in {
             type = types.str;
             default = "documents";
         };
-
-        acmeEmail = mkOption {
-            type = types.str;
-            default = serverCfg.acmeEmail;
-        };
-
-        enableSsl = mkOption {
-            type = types.bool;
-            default = serverCfg.enableSsl;
-        };
     };
 
-    config = mkIf cfg.enable {
-        services = {
-            paperless = {
+    config = mkIf cfg.enable (recursiveUpdate {
+            services.paperless = {
                 enable = true;
                 port = port;
                 passwordFile = mkDefault "/secrets/paperless-superuser-password";
@@ -43,23 +33,7 @@ in {
                     PAPERLESS_FILENAME_FORMAT = "{created_year}/{correspondent}/{created_month}/{title}";
                 };
             };
-            nginx = {
-                enable = true;
-
-                virtualHosts = {
-                    "${cfg.subDomain}.${cfg.domain}" = {
-                        addSSL = cfg.enableSsl;
-                        enableACME = cfg.enableSsl;
-                        locations."/" = {
-                            proxyPass = "http://localhost:${toString port}";
-                        };
-                    };                    
-                };
-            };
-        };
-
-        security.acme.certs = mkIf cfg.enableSsl {
-            "${cfg.subDomain}.${cfg.domain}".email = cfg.acmeEmail;
-        };
-    };
+            }
+        (mkVhost { inherit lib cfg serverCfg; port = toString port; })
+    );
 }

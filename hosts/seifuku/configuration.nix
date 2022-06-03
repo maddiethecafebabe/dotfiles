@@ -20,9 +20,16 @@ in {
         desktop.enable = false;
         dev.enable = false;
         server = {
-            inherit domain acmeEmail;
+            inherit domain;
             enable = true;
-            enableSsl = false;
+
+            ssl = {
+                enable = true;
+                self = {
+                    key = "/secrets/seifuku/priv.key";
+                    cert = "/secrets/seifuku/cert.crt";
+                };
+            };
 
             jellyfin.enable = true;
             sonarr.enable = true;

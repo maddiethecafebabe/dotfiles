@@ -1,6 +1,6 @@
 # Copied from https://github.com/hlissner/dotfiles/blob/master/modules/security.nix
 
-{ config, lib, ... }:
+{ config, lib, pubkeys, ... }:
 
 {
   services.openssh = {
@@ -55,4 +55,8 @@
     "net.core.default_qdisc" = "cake";
   };
   boot.kernelModules = [ "tcp_bbr" ];
+
+  # dont make potential random people who use my config trust my rootCA
+  # ofc this assumes they change the name of the user account..
+  security.pki.certificates = lib.optionals (config.user.name == "maddie") pubkeys.rootCAs;
 }

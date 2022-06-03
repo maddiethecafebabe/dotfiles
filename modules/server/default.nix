@@ -11,28 +11,33 @@ in {
         ./paperless.nix
     ];
 
-    options.modules.server = {
+    options.modules.server = with types; {
         enable = mkOption {
             type = types.bool;
             default = false;
-        };
-
-        acmeEmail = mkOption {
-            type = types.str;
         };
 
         domain = mkOption {
             type = types.str;
         };
 
-        enableSsl = mkOption {
-            type = types.bool;
-            default = false;
+        ssl = {
+            enable = mkOption { type = bool; default = false; };
+
+            acme = {
+                enable = mkOption { type = bool; default = false; };
+                email = mkOption { type = str; };
+            };
+
+            self = {
+                cert = mkOption { type = path; };
+                key = mkOption { type = path; };
+            };
         };
     };
 
     config = mkIf cfg.enable {
-        networking.firewall.allowedTCPPorts = [ 80 443 ];
+        networking.firewall.allowedTCPPorts = [ 80 ] ++ optionals cfg.ssl.enable [ 443 ];
 
         services.nginx = {
             enable = cfg.enable;
@@ -43,14 +48,17 @@ in {
 
             virtualHosts."${cfg.domain}" = {
                 default = true;
-                addSSL = cfg.enableSsl;
-                enableACME = cfg.enableSsl;
-            };
+                addSSL = cfg.ssl.enable;
+                enableACME = cfg.ssl.enable && cfg.ssl.acme.enable;
+            } // optionalAttrs (cfg.ssl.enable && !cfg.ssl.acme.enable) {
+                sslCertificate = cfg.ssl.self.cert;
+                sslCertificateKey = cfg.ssl.self.key;
+            } ;
         };
 
-        security.acme = mkIf cfg.enableSsl {
+        security.acme = mkIf cfg.ssl.acme.enable {
             acceptTerms = true;
-            certs."${cfg.domain}".email = cfg.acmeEmail;
+            certs."${cfg.domain}".email = cfg.ssl.acme.email;
         };
     };
 }
