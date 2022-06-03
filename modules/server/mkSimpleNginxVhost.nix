@@ -6,7 +6,9 @@ with lib;
 
         virtualHosts = {
             "${cfg.subDomain}.${cfg.domain}" = {
-                addSSL = serverCfg.ssl.enable;
+                addSSL = serverCfg.ssl.enable && !forceSSL;
+                forceSSL = serverCfg.ssl.enable && forceSSL;
+
                 enableACME = serverCfg.ssl.acme.enable;
                 locations."/" = {
                     proxyPass = "http://localhost:${port}";
@@ -14,7 +16,6 @@ with lib;
             }  // optionalAttrs (serverCfg.ssl.enable && !serverCfg.ssl.acme.enable) {
                 sslCertificate = serverCfg.ssl.self.cert;
                 sslCertificateKey = serverCfg.ssl.self.key;
-                inherit forceSSL;
             };
         };
     };
