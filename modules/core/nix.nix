@@ -2,6 +2,8 @@
 let
   base = "/etc/nixpkgs/channels";
   nixpkgsPath = "${base}/nixpkgs";
+
+  channel = inputs.nixpkgs-unstable;
 in {
   nixpkgs.config.allowUnfree = true;
 
@@ -40,6 +42,6 @@ in {
 
   # belongs to the above pinning
   systemd.tmpfiles.rules = [
-      "L+ ${nixpkgsPath}     - - - - ${inputs.nixpkgs-unstable}"
+      "L+ ${nixpkgsPath}     - - - - ${channel}"
     ];
 }

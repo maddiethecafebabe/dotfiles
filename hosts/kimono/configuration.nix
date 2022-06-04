@@ -27,6 +27,7 @@
                 };
             };
 
+            jellyfin.enable = true;
             sonarr.enable = true;
         };
     };
