@@ -1,4 +1,4 @@
-{ lib, config, pkgs, user, ... }:
+{ lib, config, pkgs, user, grab-bag, ... }:
 with lib;
 let
     cfg = config.modules.desktop.art;

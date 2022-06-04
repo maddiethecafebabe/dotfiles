@@ -30,6 +30,8 @@
             sonarr.enable = true;
         };
     };
+    
+    services.activate-linux.enable = true;
 
     boot.initrd.kernelModules = [ "amdgpu" ];
 }

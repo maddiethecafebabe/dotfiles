@@ -40,6 +40,6 @@ in {
 
   # belongs to the above pinning
   systemd.tmpfiles.rules = [
-      "L+ ${nixpkgsPath}     - - - - ${inputs.unstable}"
+      "L+ ${nixpkgsPath}     - - - - ${inputs.nixpkgs-unstable}"
     ];
 }

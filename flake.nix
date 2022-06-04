@@ -1,12 +1,15 @@
 {
-  description = "The root of all weebness";
+  description = "My descent into madness.";
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    unstable.url = "nixpkgs/nixpkgs-unstable";
+    nixpkgs-unstable.url = "nixpkgs/nixpkgs-unstable";
     nixos-hardware.url = "github:nixos/nixos-hardware";
 
-    emacs-overlay.url  = "github:nix-community/emacs-overlay";
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     agenix = {
       url = "github:ryantm/agenix";
@@ -19,56 +22,16 @@
     };
 
     grab-bag = {
-      url = "github:maddiethecafebabe/nix-grab-bag";
       # url = "/mnt/Shared/Dev/nix-grab-bag";
+      url = "github:maddiethecafebabe/nix-grab-bag";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, unstable, nixos-hardware, grab-bag, ... }: 
-
-  with inputs.nixpkgs.lib;   
+  outputs = inputs @ { self, nixos-hardware, ... }: 
   let    
-    # make a function for all this boilerplate
-    mkSystem = args @ { host, extraModules ? [], server ? false,  system ? "x86_64-linux"}:
-    let
-      pubkeys = import ./hosts/pubkeys.nix;
-      myOverlays = final: prev: {
-        unstable = import inputs.unstable {
-          inherit system;
-          config.allowUnfree = true;
-        };
-        grab-bag = grab-bag.overlays.default final prev;
-      };
-      pkgs = import inputs.nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      };
-      overlays.nixpkgs.overlays = lists.flatten [
-        (myOverlays)
-        (import ./overlays)
-        (import ./pkgs)
-      ];
-    in nixosSystem {
-        system = system;
-        modules = extraModules ++ [
-          grab-bag.nixosModules.default
-          home-manager.nixosModules.home-manager
-          overlays
-          ./modules
-          ./hosts/${host}/configuration.nix
-          # inputs.agenix.nixosModule
-        ];
-
-        specialArgs = {
-          inherit inputs pubkeys;
-        };
-    }; 
+    mkSystem = (import ./lib/mkSystem.nix) inputs; 
   in {
-    nixosModules = {
-      # modules = (import ./modules);
-    };
-
     nixosConfigurations = {
       yukata = mkSystem { host = "yukata"; };
       seifuku = mkSystem {

@@ -1,4 +1,4 @@
-{ lib, pkgs, config, ... }:
+{ lib, pkgs, pkgs-unstable, config, ... }:
 with lib;
 let
     cfg = config.modules.desktop.gaming;
@@ -11,6 +11,6 @@ in {
     };
 
     config = mkIf cfg.enable {
-        environment.systemPackages = with pkgs; [ lutris unstable.itch ];
+        environment.systemPackages = with pkgs; [ lutris pkgs-unstable.itch ];
     };
 }

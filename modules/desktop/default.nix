@@ -36,7 +36,7 @@ in {
             art.enable = mkDefault true;
             media.enable = mkDefault true;
         };
-
+        
         services.mullvad-vpn.enable = true;
 
         # xdg-open will behave weird (read: open websites in gnome text editor)

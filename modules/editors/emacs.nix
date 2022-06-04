@@ -1,7 +1,7 @@
 
 # copied and modified from https://github.com/hlissner/dotfiles/blob/master/modules/editors/emacs.nix
 
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, pkgs-unstable, emacs, ... }:
 
 with lib;
 let 
@@ -31,9 +31,7 @@ in {
       "EDITOR" = "emacs";
     };
 
-    nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
-
-    environment.systemPackages = with pkgs; [
+    environment.systemPackages = with pkgs; with emacs; [
       ## Emacs itself
       binutils       # native-comp needs 'as', provided by this
       # 29 + pgtk + native-comp
@@ -66,7 +64,7 @@ in {
       texlive.combined.scheme-medium
       # :lang beancount
       beancount
-      unstable.fava  # HACK Momentarily broken on nixos-unstable
+      pkgs-unstable.fava  # HACK Momentarily broken on nixos-unstable
     ];
 
     environment.sessionVariables.PATH = [ "$HOME/.emacs.d/bin" ];
