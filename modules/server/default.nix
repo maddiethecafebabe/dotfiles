@@ -46,6 +46,7 @@ in {
             recommendedProxySettings = mkDefault true;
             recommendedTlsSettings = mkDefault true;
 
+            # just a landing page, nothing served there so far
             virtualHosts."${cfg.domain}" = {
                 default = true;
                 addSSL = cfg.ssl.enable;
@@ -53,7 +54,7 @@ in {
             } // optionalAttrs (cfg.ssl.enable && !cfg.ssl.acme.enable) {
                 sslCertificate = cfg.ssl.self.cert;
                 sslCertificateKey = cfg.ssl.self.key;
-            } ;
+            };
         };
 
         security.acme = mkIf cfg.ssl.acme.enable {

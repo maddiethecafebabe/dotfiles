@@ -26,7 +26,6 @@ in {
     config = mkIf cfg.enable (recursiveUpdate {
             services.jellyfin = {
                 enable = true;
-                openFirewall = true;
 
                 # give it access to my mounts
                 group = "users";

@@ -22,11 +22,10 @@ in {
             default = "radarr";
         };
     };
-    
+
     config = mkIf cfg.enable (recursiveUpdate {
             services.radarr = {
                 enable = true;
-                openFirewall = true;
 
                 # give it access to my mounts
                 group = "users";
