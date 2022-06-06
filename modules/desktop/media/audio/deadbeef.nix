@@ -13,8 +13,13 @@ in {
     };
 
     config = mkIf cfg.enable {
-        user.packages = [ pkgs.deadbeef ];
+        user = {
+            packages = [ pkgs.deadbeef ];
 
-        user.home.file.".local/lib/deadbeef/discord_presence.so".source = "${deadbeef-discord-rpc}/discord_presence.so";
+            # HACK(maddie): this should work with home.file too but it doesnt, no idea why..
+            homeRaw.home.file = {
+                ".local/lib/deadbeef/discord_presence.so".source = "${deadbeef-discord-rpc}/discord_presence.so";
+            };
+        };
     };
 }

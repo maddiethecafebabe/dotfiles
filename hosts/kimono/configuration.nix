@@ -34,5 +34,6 @@
     
     services.activate-linux.enable = true;
 
+    virtualisation.podman.enable = true;
     boot.initrd.kernelModules = [ "amdgpu" ];
 }

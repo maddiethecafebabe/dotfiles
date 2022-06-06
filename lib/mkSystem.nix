@@ -1,6 +1,6 @@
 inputs: { host, extraModules ? [], server ? false,  system ? "x86_64-linux"}:
 let
-    inherit (inputs.nixpkgs.lib) nixosSystem lists;
+    inherit (inputs.nixpkgs.lib) nixosSystem lists optionalAttrs;
     inherit (inputs) grab-bag emacs-overlay home-manager;
 
     pubkeys = import ../hosts/pubkeys.nix;
@@ -32,7 +32,6 @@ in nixosSystem {
 
     specialArgs = {
         inherit inputs pubkeys pkgs-unstable emacs-overlay;
-        grab-bag = grab-bag.packages."${system}";
         emacs = emacs-overlay.packages."${system}";
-    };
+    } // optionalAttrs (!server) { grab-bag = grab-bag.packages."${system}"; };
 }

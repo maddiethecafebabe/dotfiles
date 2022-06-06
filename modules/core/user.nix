@@ -91,17 +91,16 @@ in {
             useGlobalPkgs = mkDefault true;
             useUserPackages = mkDefault true;
 
-            users."${cfg.name}" = {
-                home = {
+            users."${cfg.name}" = recursiveUpdate {
+                home = recursiveUpdate {
                     username = cfg.name;
                     homeDirectory = cfg.homeDir;
                     stateVersion = mkDefault "22.05";
-
-                } // cfg.home;
+                } cfg.home;
 
                 programs.home-manager.enable = true;
                 programs.bash.enable = mkDefault true;
-            } // cfg.homeRaw;
+            } cfg.homeRaw;
         };
     };
 }
