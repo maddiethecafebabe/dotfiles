@@ -1,4 +1,4 @@
-{ config, pkgs, pubkeys, ... }:
+{ config, pkgs, pubkeys, grab-bag, ... }:
 
 {
     imports =
@@ -10,7 +10,7 @@
     networking.hostName = "kimono"; # Define your hostname.
 
     modules = {
-        core.user.ssh_keys = pubkeys.yukata;
+        core.user.authorizedKeys = pubkeys.yukata;
         desktop = {
             enable = true;
             virtualisation.enable = true;
@@ -26,13 +26,8 @@
                     cert = "/secrets/kimono/cert.crt";
                 };
             };
-
-            jellyfin.enable = true;
-            sonarr.enable = true;
         };
     };
-    
-    services.activate-linux.enable = true;
 
     virtualisation.podman.enable = true;
     boot.initrd.kernelModules = [ "amdgpu" ];

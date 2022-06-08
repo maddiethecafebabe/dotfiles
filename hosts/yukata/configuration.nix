@@ -8,7 +8,7 @@
     ];
 
   modules = {
-    core.user.ssh_keys = pubkeys.kimono;
+    core.user.authorizedKeys = pubkeys.kimono;
     desktop.enable = true;
     editors.vscode.enable = true;
   };

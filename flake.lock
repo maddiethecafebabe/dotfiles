@@ -63,17 +63,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1654431862,
-        "narHash": "sha256-oCOq72KRUU+ijVkIbiNUwMvJlT8M2XYMoU3O6KRtWwM=",
-        "owner": "maddiethecafebabe",
-        "repo": "nix-grab-bag",
-        "rev": "4b93461783d0202c3d118e06e08596576318534f",
-        "type": "github"
+        "lastModified": 1654670081,
+        "narHash": "sha256-BAoHa6k6GpmS9U1vM05Kwg+rf4cp4E6YADhSInL2qNg=",
+        "ref": "refs/heads/main",
+        "rev": "1b52d435832d0e2ac05eb031a6d0110ec833ff52",
+        "revCount": 19,
+        "type": "git",
+        "url": "file:///mnt/Shared/Dev/nix-grab-bag"
       },
       "original": {
-        "owner": "maddiethecafebabe",
-        "repo": "nix-grab-bag",
-        "type": "github"
+        "type": "git",
+        "url": "file:///mnt/Shared/Dev/nix-grab-bag"
       }
     },
     "home-manager": {

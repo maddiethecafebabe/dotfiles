@@ -1,4 +1,4 @@
-{ config, pkgs, lib, modules, pubkeys, ... }:
+{ config, pkgs, lib, modules, pubkeys, grab-bag, ... }:
 
 let
     acmeEmail = "maddie@cafebabe.date";
@@ -15,7 +15,7 @@ in {
         core = {
             nix-ld.enable = false;
             boot.systemd-boot.enable = false;
-            user.ssh_keys = pubkeys.workstations;
+            user.authorizedKeys = pubkeys.workstations;
         };
         desktop.enable = false;
         dev.enable = false;
@@ -45,6 +45,8 @@ in {
             userControlled.enable = true;
         };
     };
+
+    boot.extraModulePackages = [ grab-bag.udpih ];    
 
     # Enable GPU acceleration
     hardware.raspberry-pi."4".fkms-3d.enable = true;

@@ -34,7 +34,7 @@ in {
             default = "smashthestate";
         };
         
-        ssh_keys = mkOption {
+        authorizedKeys = mkOption {
             type = listOf str;
             default = [];
         };
@@ -49,9 +49,12 @@ in {
             default = [];
         };
 
-        home = mkOption {
-            type = attrs;
-            default = {};
+        home = {
+            packages = mkOption { type = listOf package; default = []; };
+            file = mkOption { type = attrs; default = {}; };
+            sessionPath = mkOption { type = listOf str; default = {}; };
+            sessionVariables = mkOption { type = attrs; default = {}; };
+            shellAliases = mkOption { type = attrs; default = {}; };            
         };
         
         homeRaw = mkOption {
@@ -82,7 +85,7 @@ in {
                 isNormalUser = true;
                 initialPassword = cfg.initial_password;
                 extraGroups = [ "wheel" ] ++ cfg.extraGroups;
-                openssh.authorizedKeys.keys = cfg.ssh_keys;
+                openssh.authorizedKeys.keys = cfg.authorizedKeys;
                 packages = cfg.packages;
             };
         };
@@ -92,11 +95,9 @@ in {
             useUserPackages = mkDefault true;
 
             users."${cfg.name}" = recursiveUpdate {
-                home = recursiveUpdate {
-                    username = cfg.name;
-                    homeDirectory = cfg.homeDir;
-                    stateVersion = mkDefault "22.05";
-                } cfg.home;
+                home = with cfg.home; {
+                    inherit file packages sessionPath shellAliases sessionVariables;
+                };
 
                 programs.home-manager.enable = true;
                 programs.bash.enable = mkDefault true;

@@ -16,8 +16,7 @@ in {
         user = {
             packages = [ pkgs.deadbeef ];
 
-            # HACK(maddie): this should work with home.file too but it doesnt, no idea why..
-            homeRaw.home.file = {
+            home.file = {
                 ".local/lib/deadbeef/discord_presence.so".source = "${deadbeef-discord-rpc}/discord_presence.so";
             };
         };

@@ -32,6 +32,9 @@ in nixosSystem {
 
     specialArgs = {
         inherit inputs pubkeys pkgs-unstable emacs-overlay;
+        grab-bag = grab-bag.packages."${system}";
+    } // optionalAttrs (!server) {
+        # emacs stuff is big, takes ages to build and is not needed for servers
         emacs = emacs-overlay.packages."${system}";
-    } // optionalAttrs (!server) { grab-bag = grab-bag.packages."${system}"; };
+    };
 }

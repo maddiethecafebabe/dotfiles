@@ -4,7 +4,7 @@ let
     cfg = config.modules.hardware.switch;
 in {
     options.modules.hardware.switch = {
-        enable = mkOption { type = types.bool; default = false; };
+        enable = mkOption { type = types.bool; default = true; };
     };
 
     config = mkIf cfg.enable {
