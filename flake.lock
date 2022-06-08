@@ -63,11 +63,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1654670081,
-        "narHash": "sha256-BAoHa6k6GpmS9U1vM05Kwg+rf4cp4E6YADhSInL2qNg=",
+        "lastModified": 1654675456,
+        "narHash": "sha256-NgB1y+OWqEWbaCed3r0e6eEc/M6sGcWmulQ9N8KfKMk=",
         "owner": "maddiethecafebabe",
         "repo": "nix-grab-bag",
-        "rev": "1b52d435832d0e2ac05eb031a6d0110ec833ff52",
+        "rev": "8701b0d984c741d41587b21a5a7bc8f908609372",
         "type": "github"
       },
       "original": {
