@@ -65,15 +65,15 @@
       "locked": {
         "lastModified": 1654670081,
         "narHash": "sha256-BAoHa6k6GpmS9U1vM05Kwg+rf4cp4E6YADhSInL2qNg=",
-        "ref": "refs/heads/main",
+        "owner": "maddiethecafebabe",
+        "repo": "nix-grab-bag",
         "rev": "1b52d435832d0e2ac05eb031a6d0110ec833ff52",
-        "revCount": 19,
-        "type": "git",
-        "url": "file:///mnt/Shared/Dev/nix-grab-bag"
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:///mnt/Shared/Dev/nix-grab-bag"
+        "owner": "maddiethecafebabe",
+        "repo": "nix-grab-bag",
+        "type": "github"
       }
     },
     "home-manager": {
