@@ -4,10 +4,8 @@
 with lib;
 let 
     cfg = config.modules.desktop.gnome;
-    default_wallpaper = pkgs.fetchurl {
-        url = "https://media.discordapp.net/attachments/836638993403084850/981776209341993021/wallpaper.png";
-        sha256 = "sha256-3HwaEw/UcGY1SqdZXA5fn3I8CriWftmwJ+VFzQ5/PmI=";
-    };
+
+    wallpapers = import ./wallpapers.nix { inherit lib pkgs; };
 in {
     options.modules.desktop.gnome = {
         enable = mkOption {
@@ -20,7 +18,7 @@ in {
 
         wallpaper = mkOption {
             type = types.str;
-            default = "${default_wallpaper}";
+            default = "${wallpapers.default}";
         };
     };
 

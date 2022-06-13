@@ -4,7 +4,7 @@ let
     cfg = config.modules.hardware.adb;
 in {
     options.modules.hardware.adb = {
-        enable = mkOption { type = types.bool; default = false; };
+        enable = mkOption { type = types.bool; default = true; };
     };
 
     config = mkIf cfg.enable {
