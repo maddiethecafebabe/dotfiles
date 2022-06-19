@@ -14,7 +14,7 @@ in {
     };
 
     config = mkIf cfg.enable {
-        programs.dconf.enable = gnomeCfg.enable;
+        programs.dconf.enable = mkDefault gnomeCfg.enable;
 
         user = {
             packages = [ pkgs.papirus-icon-theme ];

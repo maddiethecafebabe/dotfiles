@@ -13,6 +13,7 @@ in {
         ./virtualisation.nix
         ./discord.nix
         ./rofi.nix
+        ./wm
     ];
 
     options = {

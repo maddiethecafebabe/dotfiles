@@ -52,14 +52,24 @@ in {
         home = {
             packages = mkOption { type = listOf package; default = []; };
             file = mkOption { type = attrs; default = {}; };
+
+            # TODO: home.configFile -> home.file."$XDG_CONFIG_DIR/${path}"
+
+            # TODO: move those out of hm
             sessionPath = mkOption { type = listOf str; default = {}; };
             sessionVariables = mkOption { type = attrs; default = {}; };
             shellAliases = mkOption { type = attrs; default = {}; };            
         };
         
+        # TODO: get rid of this
         homeRaw = mkOption {
             type = attrs;
             default = {};
+        };
+
+        shortcuts = mkOption {
+            type = listOf attrs;
+            default = [];
         };
         
         home-manager.enable = mkOption {
@@ -98,6 +108,8 @@ in {
                 home = with cfg.home; {
                     inherit file packages sessionPath shellAliases sessionVariables;
                 };
+
+                # dconf = ((import ../../lib/mkGnomeShortcut.nix) { inherit lib; } cfg.shortcuts).dconf;
 
                 programs.home-manager.enable = true;
                 programs.bash.enable = mkDefault true;

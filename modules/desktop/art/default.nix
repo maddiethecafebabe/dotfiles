@@ -3,7 +3,9 @@ with lib;
 let
     cfg = config.modules.desktop.art;
 in {
-    imports = [ ];
+    imports = [
+        ./xcolor.nix
+    ];
 
     options.modules.desktop.art = {
         enable = mkOption {
@@ -13,6 +15,10 @@ in {
     };
 
     config = mkIf cfg.enable {
+        modules.desktop.art = {
+            xcolor.enable = true;
+        };
+
         user.packages = with pkgs; [
             libresprite
             krita

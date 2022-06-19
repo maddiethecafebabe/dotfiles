@@ -27,6 +27,10 @@ in {
 
     config = mkIf cfg.enable {
         time.timeZone = "Europe/Berlin";
+        location = {
+            latitude = 48.16;
+            longitude = 11.58;
+        };
 
         environment.systemPackages = with pkgs; [
             git
