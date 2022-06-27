@@ -107,6 +107,9 @@ in {
             users."${cfg.name}" = recursiveUpdate {
                 home = with cfg.home; {
                     inherit file packages sessionPath shellAliases sessionVariables;
+
+                    stateVersion = mkDefault "21.11";
+                    homeDirectory = cfg.homeDir;
                 };
 
                 # dconf = ((import ../../lib/mkGnomeShortcut.nix) { inherit lib; } cfg.shortcuts).dconf;

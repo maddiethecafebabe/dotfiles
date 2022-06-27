@@ -3,3 +3,4 @@
 /notes/
 test*.nix
 TODO
+*.log

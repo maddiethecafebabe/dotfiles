@@ -17,7 +17,10 @@
             wm.enable = true;
             virtualisation.enable = true;
         };
-        editors.enable-all = true;
+        editors = {
+            vim.enable = true;
+            vscode.enable = true;
+        };
         server = {
             domain = "kimono.local";
 
@@ -31,8 +34,5 @@
         };
     };
 
-    hardware.homebrew.udpih.enable = true;
-
-    virtualisation.podman.enable = true;
     boot.initrd.kernelModules = [ "amdgpu" ];
 }
