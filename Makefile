@@ -1,6 +1,9 @@
 NIXCC := nixos-rebuild switch --use-remote-sudo --flake
 
 host:
+	$(NIXCC) .
+
+debug:
 	$(NIXCC) . --show-trace
 
 kimono:

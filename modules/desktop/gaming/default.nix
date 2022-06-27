@@ -11,6 +11,9 @@ in {
     };
 
     config = mkIf cfg.enable {
-        environment.systemPackages = with pkgs; [ lutris pkgs-unstable.itch ];
+        environment.systemPackages = with pkgs; [
+            lutris
+        ];
+
     };
 }
