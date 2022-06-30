@@ -3,11 +3,8 @@ with lib;
 let
     cfg = config.modules.desktop.pipewire;
 in {
-    options = {
-        modules.desktop.pipewire.enable = mkOption {
-            type = types.bool;
-            default = false;
-        };
+    options.modules.desktop.pipewire = {
+        enable = mkEnableOption "pipewire";
     };
 
     config = mkIf cfg.enable {

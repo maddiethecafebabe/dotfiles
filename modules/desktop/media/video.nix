@@ -4,10 +4,7 @@ let
     cfg = config.modules.desktop.media.video;
 in {
     options.modules.desktop.media.video = {
-        enable = mkOption {
-            type = types.bool;
-            default = false;
-        };
+        enable = mkEnableOption "video module";
     };
 
     config = mkIf cfg.enable {

@@ -7,10 +7,7 @@ let
     mkVhost = import ./mkSimpleNginxVhost.nix;
 in {
     options.modules.server.sonarr = {
-        enable = mkOption {
-            type = types.bool;
-            default = false;
-        };
+        enable = mkEnableOption "sonarr";
 
         domain = mkOption {
             type = types.str;

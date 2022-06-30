@@ -28,7 +28,8 @@ in {
 
     config = mkIf cfg.enable {
         modules.desktop = {
-            gnome.enable = mkDefault true;
+            gnome.enable = mkDefault false;
+            wm.enable = mkDefault true;
             flatpak.enable = mkDefault true;
             pipewire.enable = mkDefault true;
             gaming.enable = mkDefault true;

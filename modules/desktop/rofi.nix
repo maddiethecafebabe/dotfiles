@@ -5,7 +5,7 @@ let
     gnomeCfg = config.modules.desktop.gnome;
 in {
     options.modules.desktop.rofi = {
-        enable = mkOption { type = types.bool; default = false; };
+        enable = mkEnableOption "rofi";
 
         gnome = {
             binding = mkOption { type = types.str; default = "<Super>space"; };

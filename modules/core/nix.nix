@@ -1,5 +1,7 @@
-{ pkgs, inputs, ... }:
+{ lib, pkgs, inputs, ... }:
 let
+  inherit (lib) mkDefault;
+
   base = "/etc/nixpkgs/channels";
   nixpkgsPath = "${base}/nixpkgs";
 
@@ -11,7 +13,7 @@ in {
     package = pkgs.nixUnstable;
 
     settings = {
-      auto-optimise-store = true;
+      auto-optimise-store = mkDefault true;
       substituters = [ 
         "https://nix-community.cachix.org"
       ];
@@ -21,7 +23,7 @@ in {
     };
 
     gc = {
-      automatic = true;
+      automatic = mkDefault true;
       dates = "weekly";
       options = "--delete-older-than 21d";
     };

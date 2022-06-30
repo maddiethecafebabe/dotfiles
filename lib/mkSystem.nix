@@ -8,12 +8,12 @@ let
     pkgs-unstable = import inputs.nixpkgs-unstable {
         inherit system;
         config.allowUnfree = true;
-        };
+    };
 
     pkgs = import inputs.nixpkgs {
         inherit system;
         config.allowUnfree = true;
-        };
+    };
 
     overlays.nixpkgs.overlays = lists.flatten [
         (import ../overlays)

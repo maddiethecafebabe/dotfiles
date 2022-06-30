@@ -4,10 +4,8 @@ let
     cfg = config.modules.editors.vscode;
 in {
     options.modules.editors.vscode = {
-        enable = mkOption { 
-            default = false;
-            type = types.bool;
-        };
+        enable = mkEnableOption "vscode";
+
         default = mkOption {
             default = false;
             type = types.bool;

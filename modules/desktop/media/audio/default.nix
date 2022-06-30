@@ -8,10 +8,7 @@ in {
     ];
 
     options.modules.desktop.media.audio = {
-        enable = mkOption {
-            type = types.bool;
-            default = false;
-        };
+        enable = mkEnableOption "audio module";
     };
 
     config = mkIf cfg.enable {

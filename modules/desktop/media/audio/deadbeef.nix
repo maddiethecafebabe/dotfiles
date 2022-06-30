@@ -9,7 +9,7 @@ let
     };
 in {
     options.modules.desktop.media.audio.deadbeef = {
-        enable = mkOption { type = types.bool; default = false; };
+        enable = mkEnableOption "deadbeef";
     };
 
     config = mkIf cfg.enable {

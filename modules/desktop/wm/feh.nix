@@ -4,10 +4,7 @@ let
     cfg = config.modules.desktop.wm.feh;
 in {
     options.modules.desktop.wm.feh = {
-        enable = mkOption {
-            type = types.bool;
-            default = false;
-        };
+        enable = mkEnableOption "feh";
 
         wallpaper = mkOption {
             type = types.path;

@@ -4,10 +4,8 @@ let
     cfg = config.modules.editors.vim;
 in {
     options.modules.editors.vim = {
-        enable = mkOption { 
-            default = true;
-            type = types.bool;
-        };
+        enable = mkEnableOption "vim";
+
         default = mkOption {
             default = true;
             type = types.bool;

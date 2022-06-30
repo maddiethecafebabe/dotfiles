@@ -4,7 +4,7 @@ let
     cfg = config.modules.hardware.graphics;
 in {
     options.modules.hardware.graphics = {
-        enable = mkOption { type = types.bool; default = false; };
+        enable = mkEnableOption "graphics stuff";
     };
 
     config = mkIf (cfg.enable || config.modules.desktop.enable) {

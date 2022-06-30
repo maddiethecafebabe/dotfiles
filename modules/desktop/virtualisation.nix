@@ -4,11 +4,8 @@ with lib;
 let 
     cfg = config.modules.desktop.virtualisation;
 in {
-    options = {
-        modules.desktop.virtualisation.enable = mkOption {
-            type = types.bool;
-            default = false;
-        };
+    options.modules.desktop.virtualisation = {
+        enable = mkEnableOption "virtualisation stuff";
     };
 
     config = mkIf cfg.enable  {

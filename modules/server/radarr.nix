@@ -7,10 +7,7 @@ let
     mkVhost = import ./mkSimpleNginxVhost.nix;
 in {
     options.modules.server.radarr = {
-        enable = mkOption {
-            type = types.bool;
-            default = false;
-        };
+        enable = mkEnableOption "radarr";
 
         domain = mkOption {
             type = types.str;

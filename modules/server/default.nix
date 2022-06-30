@@ -12,20 +12,17 @@ in {
     ];
 
     options.modules.server = with types; {
-        enable = mkOption {
-            type = types.bool;
-            default = false;
-        };
+        enable = mkEnableOption "server stuff";
 
         domain = mkOption {
             type = types.str;
         };
 
         ssl = {
-            enable = mkOption { type = bool; default = false; };
+            enable = mkEnableOption "ssl for server vhosts";
 
             acme = {
-                enable = mkOption { type = bool; default = false; };
+                enable = mkEnableOption "acme for automatic lets encrypt certs";
                 email = mkOption { type = str; };
             };
 

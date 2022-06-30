@@ -7,10 +7,7 @@ let
     mkVhost = import ./mkSimpleNginxVhost.nix;
 in {
     options.modules.server.jellyfin = {
-        enable = mkOption {
-            type = types.bool;
-            default = false;
-        };
+        enable = mkEnableOption "jellyfin";
 
         domain = mkOption {
             type = types.str;

@@ -4,11 +4,8 @@ with lib;
 let 
     cfg = config.modules.desktop.flatpak;
 in {
-    options = {
-        modules.desktop.flatpak.enable = mkOption {
-            type = types.bool;
-            default = false;
-        };
+    options.modules.desktop.flatpak = {
+        enable = mkEnableOption "flatpak";
     };
 
     config = mkIf cfg.enable  {

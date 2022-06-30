@@ -28,10 +28,7 @@ let
     };
 in {
     options.modules.desktop.discord = {
-        enable = mkOption {
-            type = types.bool;
-            default = false;
-        };
+        enable = mkEnableOption "discord";
 
         applyTweaks = mkOption {
             type = types.bool;

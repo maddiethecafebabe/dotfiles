@@ -5,9 +5,9 @@ let
     gnomeCfg = config.modules.desktop.gnome;
 in {
     options.modules.desktop.art.xcolor = {
-        enable = mkOption { type = types.bool; default = false; };
-
-        gnome = {
+        enable = mkEnableOption "xcolor";
+    
+        shortcut = {
             binding = mkOption { type = types.str; default = "<Super>x"; };
             command = mkOption { type = types.str; default = "xcolor -P 333 -S 16 --selection clipboard"; };
         };

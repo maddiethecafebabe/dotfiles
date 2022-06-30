@@ -8,14 +8,10 @@ let
     cfg = config.modules.editors.emacs;
 in {
   options.modules.editors.emacs = {
-    enable = mkOption { 
-        default = false;
-        type = types.bool;
-    };
-    default = mkOption {
-            default = false;
-            type = types.bool;
-    };
+    enable = mkEnableOption "emacs";
+
+    default = mkEnableOption "emacs as the default editor";
+
     doom = rec {
       enable = mkOption {
           default = cfg.enable;

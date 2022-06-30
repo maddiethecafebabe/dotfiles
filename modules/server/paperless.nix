@@ -7,10 +7,7 @@ let
     mkVhost = import ./mkSimpleNginxVhost.nix;
 in {
     options.modules.server.paperless = {
-        enable = mkOption {
-            type = types.bool;
-            default = false;
-        };
+        enable = mkEnableOption "paperless";
 
         domain = mkOption {
             type = types.str;

@@ -8,13 +8,7 @@ let
     wallpapers = import ./wallpapers.nix { inherit lib pkgs; };
 in {
     options.modules.desktop.gnome = {
-        enable = mkOption {
-            type = types.bool;
-            default = false;
-            description = ''
-                GNOME time
-            '';
-        };
+        enable = mkEnableOption "GNOME";
 
         wallpaper = mkOption {
             type = types.str;

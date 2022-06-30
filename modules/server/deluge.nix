@@ -4,10 +4,7 @@ let
     cfg = config.modules.server.deluge;
 in {
     options.modules.server.deluge = {
-        enable = mkOption {
-            type = types.bool;
-            default = false;
-        };
+        enable = mkEnableOption "deluge";
     };
 
     config = mkIf cfg.enable {

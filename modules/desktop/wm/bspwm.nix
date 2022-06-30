@@ -4,10 +4,7 @@ let
     cfg = config.modules.desktop.wm.bspwm;
 in {
     options.modules.desktop.wm.bspwm = {
-        enable = mkOption {
-            type = types.bool;
-            default = false;
-        };
+        enable = mkEnableOption "bspwm";
     };
 
     config = mkIf cfg.enable {

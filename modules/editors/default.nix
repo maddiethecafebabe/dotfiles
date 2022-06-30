@@ -10,7 +10,7 @@ in {
     ];
 
     options.modules.editors = {
-        enable-all = mkOption { type = types.bool; default = false; };
+        enable-all = mkEnableOption "all editors";
     };
 
     config = {

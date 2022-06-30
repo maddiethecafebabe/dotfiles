@@ -8,10 +8,7 @@ in {
     ];
 
     options.modules.desktop.art = {
-        enable = mkOption {
-            type = types.bool;
-            default = false;
-        };
+        enable = mkEnableOption "art module";
     };
 
     config = mkIf cfg.enable {

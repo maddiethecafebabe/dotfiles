@@ -9,10 +9,7 @@ in {
     ];
 
     options.modules.desktop.media = {
-        enable = mkOption {
-            type = types.bool;
-            default = false;
-        };
+        enable = mkEnableOption "media stuff";
     };
 
     config = mkIf cfg.enable {
