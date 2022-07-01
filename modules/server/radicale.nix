@@ -33,6 +33,13 @@ in {
                 };
             };
         }
-        (mkVhost { inherit lib cfg serverCfg port; })
+        (mkVhost {
+            inherit lib cfg serverCfg port;
+            locationsExtraConfig = ''
+                proxy_set_header  X-Script-Name /;
+                proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_pass_header Authorization;
+            '';
+        })
     );
 }

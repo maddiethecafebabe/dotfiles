@@ -1,4 +1,4 @@
-{ lib, cfg, serverCfg, port, forceSSL ? true }:
+{ lib, cfg, serverCfg, port, forceSSL ? true, locationsExtraConfig ? "" }:
 with lib;
 {
     services.nginx = {
@@ -12,8 +12,9 @@ with lib;
                 enableACME = serverCfg.ssl.acme.enable;
                 locations."/" = {
                     proxyPass = "http://localhost:${port}";
+                    extraConfig = locationsExtraConfig;
                 };
-            }  // optionalAttrs (serverCfg.ssl.enable && !serverCfg.ssl.acme.enable) {
+            } // optionalAttrs (serverCfg.ssl.enable && !serverCfg.ssl.acme.enable) {
                 sslCertificate = serverCfg.ssl.self.cert;
                 sslCertificateKey = serverCfg.ssl.self.key;
             };
