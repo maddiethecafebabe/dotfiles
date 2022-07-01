@@ -35,6 +35,7 @@ in {
             sonarr.enable = true;
             radarr.enable = true;
             paperless.enable = true;
+            radicale.enable = true;
         };
     };
 
