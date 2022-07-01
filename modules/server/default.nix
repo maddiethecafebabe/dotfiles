@@ -9,6 +9,7 @@ in {
         ./radarr.nix
         ./deluge.nix
         ./paperless.nix
+        ./radicale.nix
     ];
 
     options.modules.server = with types; {
