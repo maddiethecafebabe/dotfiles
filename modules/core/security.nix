@@ -58,5 +58,5 @@
 
   # dont make potential random people who use my config trust my rootCA
   # ofc this assumes they change the name of the user account..
-  security.pki.certificates = lib.optionals (config.user.name == "maddie") pubkeys.rootCAs;
+  security.pki.certificateFiles = lib.optionals (config.user.name == "maddie") (pubkeys.rootCAFiles);
 }
