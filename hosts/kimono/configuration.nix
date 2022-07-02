@@ -38,8 +38,15 @@
         };
 
       };
-        adguardhome.enable = true;
-
+      adguardhome = {
+        enable = true;
+        settings = {
+            users = [
+                # go ahead, crack it. i believe in your habilities
+                { name = "maddie"; password = "$2y$10$ggaJIptyrV6HLWN5hpHm.eb0ajLLSj6CuAaxJDClBhzzel9W82d7K"; }
+            ];
+        };
+      };
     };
   };
 
