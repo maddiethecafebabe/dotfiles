@@ -2,11 +2,14 @@
 with lib;
 let
     cfg = config.modules.editors;
+    mkEditor = (import ../../lib/mkSimpleEditor.nix);
 in {
     imports = [
         ./emacs.nix
-        ./vim.nix
-        ./vscode.nix
+
+        (mkEditor "vscode" { command = "code"; })
+        (mkEditor "vim" { defaultEnable = true; })
+        (mkEditor "lapce" { defaultPackage = pkgs.lapce-upstream; })
     ];
 
     options.modules.editors = {
@@ -15,9 +18,10 @@ in {
 
     config = {
         modules.editors = {
-            vim.enable = mkDefault cfg.enable-all;
+            vim.enable = mkDefault true;
             emacs.enable = mkDefault cfg.enable-all;
             vscode.enable = mkDefault cfg.enable-all;
+            lapce.enable = mkDefault cfg.enable-all;
         };
     };
 }
