@@ -2,15 +2,12 @@
   lib,
   pkgs,
   config,
-  alejandra,
   ...
 }:
 with lib; let
-  cfg = config.modules.dev.nix;
+  cfg = config.modules.dev;
 in {
-  options.modules.dev.nix.enable = mkEnableOption "nix dev";
-
   config = mkIf cfg.enable {
-    user.packages = [alejandra];
+    user.packages = [pkgs.alejandra];
   };
 }
