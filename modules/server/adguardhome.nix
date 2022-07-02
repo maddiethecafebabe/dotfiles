@@ -44,7 +44,7 @@ in {
         openFirewall = false;
 
         # were doubling down here
-        mutableSettings = true;
+        mutableSettings = false;
 
         settings = recursiveUpdate defaultSettings cfg.settings;
       };
