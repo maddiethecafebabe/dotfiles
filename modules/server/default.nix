@@ -14,6 +14,7 @@ in {
     ./deluge.nix
     ./paperless.nix
     ./radicale.nix
+    ./adguardhome.nix
   ];
 
   options.modules.server = with types; {

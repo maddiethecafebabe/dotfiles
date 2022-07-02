@@ -42,6 +42,7 @@ in {
       radarr.enable = true;
       paperless.enable = true;
       radicale.enable = true;
+      adguardhome.enable = true;
     };
   };
 

@@ -34,7 +34,10 @@
           key = "/secrets/kimono/priv.key";
           cert = "/secrets/kimono/cert.crt";
         };
+
       };
+        adguardhome.enable = true;
+
     };
   };
 
