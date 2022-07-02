@@ -26,21 +26,29 @@
       url = "github:maddiethecafebabe/nix-grab-bag";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    alejandra = {
+      url = "github:kamadorueda/alejandra/1.5.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs @ { self, nixos-hardware, ... }: 
-  let    
-    mkSystem = (import ./lib/mkSystem.nix) inputs; 
+  outputs = inputs @ {
+    self,
+    nixos-hardware,
+    ...
+  }: let
+    mkSystem = (import ./lib/mkSystem.nix) inputs;
   in {
     nixosConfigurations = {
-      yukata = mkSystem { host = "yukata"; };
+      yukata = mkSystem {host = "yukata";};
       seifuku = mkSystem {
         host = "seifuku";
         server = true;
-        extraModules = [ nixos-hardware.nixosModules.raspberry-pi-4 ];
+        extraModules = [nixos-hardware.nixosModules.raspberry-pi-4];
         system = "aarch64-linux";
       };
-      kimono = mkSystem { host = "kimono"; };
+      kimono = mkSystem {host = "kimono";};
     };
   };
 }

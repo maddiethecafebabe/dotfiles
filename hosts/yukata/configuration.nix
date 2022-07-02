@@ -1,11 +1,14 @@
-{ config, pkgs, pubkeys, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./fs.nix
-    ];
+  config,
+  pkgs,
+  pubkeys,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./fs.nix
+  ];
 
   modules = {
     core.user.authorizedKeys = pubkeys.kimono;

@@ -1,21 +1,24 @@
-
-{ pkgs, lib, config, ... }:
-with lib;
-let 
-    cfg = config.modules.desktop.flatpak;
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+with lib; let
+  cfg = config.modules.desktop.flatpak;
 in {
-    options.modules.desktop.flatpak = {
-        enable = mkEnableOption "flatpak";
+  options.modules.desktop.flatpak = {
+    enable = mkEnableOption "flatpak";
+  };
+
+  config = mkIf cfg.enable {
+    xdg.portal = {
+      enable = true;
+      extraPortals = [
+        pkgs.xdg-desktop-portal-gtk
+      ];
     };
 
-    config = mkIf cfg.enable  {
-        xdg.portal = {
-            enable = true;
-            extraPortals = [
-                pkgs.xdg-desktop-portal-gtk
-            ];
-        };
-
-        services.flatpak.enable = true;
-    };
+    services.flatpak.enable = true;
+  };
 }

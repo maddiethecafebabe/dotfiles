@@ -1,5 +1,9 @@
-{ lib, pkgs, inputs, ... }:
-let
+{
+  lib,
+  pkgs,
+  inputs,
+  ...
+}: let
   inherit (lib) mkDefault;
 
   base = "/etc/nixpkgs/channels";
@@ -14,7 +18,7 @@ in {
 
     settings = {
       auto-optimise-store = mkDefault true;
-      substituters = [ 
+      substituters = [
         "https://nix-community.cachix.org"
       ];
       trusted-public-keys = [
@@ -29,12 +33,12 @@ in {
     };
 
     # this pins the nixpkgs channel thats used by e.g. nix-shell
-    # to the unstable channel that the system flake uses. 
+    # to the unstable channel that the system flake uses.
     # this is supposed to prevent non-installed applications from failing to
     # e.g. initialise opengl
     nixPath = [
-        "nixpkgs=${nixpkgsPath}"
-        "/nix/var/nix/profiles/per-user/root/channels"
+      "nixpkgs=${nixpkgsPath}"
+      "/nix/var/nix/profiles/per-user/root/channels"
     ];
 
     extraOptions = ''
@@ -44,6 +48,6 @@ in {
 
   # belongs to the above pinning
   systemd.tmpfiles.rules = [
-      "L+ ${nixpkgsPath}     - - - - ${channel}"
-    ];
+    "L+ ${nixpkgsPath}     - - - - ${channel}"
+  ];
 }

@@ -1,11 +1,9 @@
 # taken from https://github.com/InfinityGhost/nixos-workstation/blob/master/pkgs/nix-direnv-init/default.nix
-
-{ lib
-, writers
-, symlinkJoin
-}:
-
-let
+{
+  lib,
+  writers,
+  symlinkJoin,
+}: let
   pname = "mkdirenv";
   bin = writers.writeBashBin pname ''
     function check-file
@@ -20,7 +18,7 @@ let
     echo "Creating nix direnv files..."
     cat > shell.nix <<EOF
     { pkgs ? import <nixpkgs> { } }:
-    
+
     pkgs.mkShell {
       nativeBuildInputs = with pkgs; [ ];
       buildInputs = with pkgs; [ ];
@@ -33,11 +31,12 @@ let
     $EDITOR shell.nix
     cat > .envrc <<EOF
     use nix
-    
+
     EOF
     direnv allow
   '';
-in symlinkJoin {
-  name = pname;
-  paths = [ bin ];
-}
+in
+  symlinkJoin {
+    name = pname;
+    paths = [bin];
+  }

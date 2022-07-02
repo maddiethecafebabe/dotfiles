@@ -1,10 +1,12 @@
-{ options, lib, ... }:
-
 {
+  options,
+  lib,
+  ...
+}: {
   services.samba = {
     enable = true;
     openFirewall = true;
-    
+
     shares = {
       "Besenkammer" = {
         path = "/mnt/Besenkammer";

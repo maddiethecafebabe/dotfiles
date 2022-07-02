@@ -1,22 +1,28 @@
-{ lib, config, ... }:
-let
-    inherit (lib) mkIf mkOption types;
-    cfg = config.modules.desktop.wm;
-    desktopCfg = config.modules.desktop;
+{
+  lib,
+  config,
+  ...
+}: let
+  inherit (lib) mkIf mkOption types;
+  cfg = config.modules.desktop.wm;
+  desktopCfg = config.modules.desktop;
 in {
-    imports = [
-        ./bspwm.nix
-        ./feh.nix
-    ];
+  imports = [
+    ./bspwm.nix
+    ./feh.nix
+  ];
 
-    options.modules.desktop.wm = {
-        enable = mkOption { type = types.bool; default = desktopCfg.enable; };
+  options.modules.desktop.wm = {
+    enable = mkOption {
+      type = types.bool;
+      default = desktopCfg.enable;
     };
+  };
 
-    config = mkIf cfg.enable {
-        modules.desktop.wm = {
-            feh.enable = true;
-            bspwm.enable = true;
-        };
+  config = mkIf cfg.enable {
+    modules.desktop.wm = {
+      feh.enable = true;
+      bspwm.enable = true;
     };
+  };
 }

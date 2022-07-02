@@ -1,8 +1,10 @@
 # Copied from https://github.com/hlissner/dotfiles/blob/master/modules/security.nix
-
-{ config, lib, pubkeys, ... }:
-
 {
+  config,
+  lib,
+  pubkeys,
+  ...
+}: {
   services.openssh = {
     passwordAuthentication = false;
   };
@@ -54,7 +56,7 @@
     "net.ipv4.tcp_congestion_control" = "bbr";
     "net.core.default_qdisc" = "cake";
   };
-  boot.kernelModules = [ "tcp_bbr" ];
+  boot.kernelModules = ["tcp_bbr"];
 
   # dont make potential random people who use my config trust my rootCA
   # ofc this assumes they change the name of the user account..
