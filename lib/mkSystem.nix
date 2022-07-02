@@ -5,7 +5,7 @@ inputs: {
   system ? "x86_64-linux",
 }: let
   inherit (inputs.nixpkgs.lib) nixosSystem lists optionalAttrs;
-  inherit (inputs) grab-bag emacs-overlay home-manager alejandra;
+  inherit (inputs) grab-bag emacs-overlay home-manager;
 
   pubkeys = import ../hosts/pubkeys.nix;
 
@@ -41,7 +41,6 @@ in
       {
         inherit inputs pubkeys pkgs-unstable emacs-overlay;
         grab-bag = grab-bag.packages."${system}";
-        alejandra = alejandra.defaultPackage."${system}";
       }
       // optionalAttrs (!server) {
         # emacs stuff is big, takes ages to build and is not needed for servers

@@ -2,6 +2,8 @@
 # TODO: just vendor the discord packages at this point
 #       because of nix limitations it will be a lot easier
 #       to just add options for the settings i need
+# TODO: in the vendored package maybe make a wrapper script
+#       that merges the settings and not just dumps a readonly symlink
 {
   lib,
   pkgs,
@@ -57,7 +59,6 @@ in {
     user.packages = with pkgs;
       if cfg.applyTweaks
       then [
-        xdg-utils
         (overrideDesktopEntry (tweakInputs discord) (super: mkDiscordDesktop super "Discord" "Discord --no-sandbox"))
         (overrideDesktopEntry (tweakInputs discord-canary) (super: mkDiscordDesktop super "Discord Canary" "DiscordCanary --no-sandbox"))
       ]

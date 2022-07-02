@@ -20,28 +20,6 @@
         "type": "github"
       }
     },
-    "alejandra": {
-      "inputs": {
-        "flakeCompat": "flakeCompat",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1655935478,
-        "narHash": "sha256-A0ruEdPeKIzGYxyXNACnzaKtQUVc30s2ExTUzdFTcWM=",
-        "owner": "kamadorueda",
-        "repo": "alejandra",
-        "rev": "2627a96291bbbbb0bd9090fb346bb5cea0e14224",
-        "type": "github"
-      },
-      "original": {
-        "owner": "kamadorueda",
-        "ref": "1.5.0",
-        "repo": "alejandra",
-        "type": "github"
-      }
-    },
     "emacs-overlay": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -75,22 +53,6 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "flakeCompat": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1650374568,
-        "narHash": "sha256-Z+s0J8/r907g149rllvwhb4pKi8Wam5ij0st8PwAh+E=",
-        "owner": "edolstra",
-        "repo": "flake-compat",
-        "rev": "b4a34015c698c7793d592d66adbab377907a2be8",
-        "type": "github"
-      },
-      "original": {
-        "owner": "edolstra",
-        "repo": "flake-compat",
         "type": "github"
       }
     },
@@ -184,7 +146,6 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
-        "alejandra": "alejandra",
         "emacs-overlay": "emacs-overlay",
         "grab-bag": "grab-bag",
         "home-manager": "home-manager",
