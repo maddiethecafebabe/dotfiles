@@ -45,10 +45,13 @@ in {
       adguardhome = {
         enable = true;
         settings = {
-            users = [
-                # go ahead, crack it. i believe in your habilities
-                { name = "maddie"; password = "$2y$05$ianP9twxj.J4R3Q8PSG20OOz4ce4i.2S02Abyo0o2GJiepRqKblwW"; }
-            ];
+          users = [
+            # go ahead, crack it. i believe in your habilities
+            {
+              name = "maddie";
+              password = "$2y$05$ianP9twxj.J4R3Q8PSG20OOz4ce4i.2S02Abyo0o2GJiepRqKblwW";
+            }
+          ];
         };
       };
     };

@@ -20,8 +20,8 @@ in {
     };
 
     settings = mkOption {
-        type = types.attrs;
-        default = {};
+      type = types.attrs;
+      default = {};
     };
 
     subDomain = mkOption {
@@ -53,6 +53,9 @@ in {
       networking.firewall.allowedTCPPorts = [53];
       networking.firewall.allowedUDPPorts = [53];
     }
-    (mkVhost {inherit lib cfg serverCfg; port = toString port;})
+    (mkVhost {
+      inherit lib cfg serverCfg;
+      port = toString port;
+    })
   );
 }

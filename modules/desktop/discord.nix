@@ -38,13 +38,14 @@ with lib; let
     mimeTypes = ["x-scheme-handler/discord"];
   };
 
-  tweakInputs = pkg: pkg.override {
-    # if this is not in sync with firefox
-    # it breaks opening urls
-    nss = pkgs.nss_latest;
+  tweakInputs = pkg:
+    pkg.override {
+      # if this is not in sync with firefox
+      # it breaks opening urls
+      nss = pkgs.nss_latest;
 
-    # withOpenASAR = true;
-  };
+      # withOpenASAR = true;
+    };
 in {
   options.modules.desktop.discord = {
     enable = mkEnableOption "discord";
