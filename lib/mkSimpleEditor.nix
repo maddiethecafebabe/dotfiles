@@ -2,6 +2,7 @@ name: {
   defaultPackage ? null,
   command ? name,
   defaultEnable ? false,
+  defaultDefault ? false,
 }: {
   pkgs,
   lib,
@@ -27,7 +28,11 @@ in {
       default = defaultPackage';
     };
 
-    default = mkEnableOption "${name} as the default editor";
+    default = mkOption {
+      type = types.bool;
+      default = defaultDefault;
+      description = "${name} as the default editor";
+    };
   };
 
   config = mkIf cfg.enable {

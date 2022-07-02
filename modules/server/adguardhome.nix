@@ -44,19 +44,9 @@ in {
         openFirewall = false;
 
         # were doubling down here
-        mutableSettings = true;
+        mutableSettings = false;
 
-        /*settings = {
-            dns = {
-                bind_host = "0.0.0.0";
-
-                port = 53; 
-
-                bootstrap_dns = "9.9.9.10";
-            };
-        };*/
-
-        # settings = recursiveUpdate defaultSettings cfg.settings;
+        settings = recursiveUpdate defaultSettings cfg.settings;
       };
 
       # DNS

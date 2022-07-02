@@ -12,7 +12,7 @@ in {
     ./emacs.nix
 
     (mkEditor "vscode" {command = "code";})
-    (mkEditor "vim" {defaultEnable = true;})
+    (mkEditor "vim" {defaultEnable = true; defaultDefault = true;})
     (mkEditor "lapce" {defaultPackage = pkgs.lapce-upstream;})
   ];
 
