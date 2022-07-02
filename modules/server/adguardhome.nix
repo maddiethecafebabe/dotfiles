@@ -35,6 +35,10 @@ in {
 
         host = "localhost";
       };
+
+      # DNS
+      networking.firewall.allowedTCPPorts = [53];
+      networking.firewall.allowedUDPPorts = [53];
     }
     (mkVhost {inherit lib cfg serverCfg port;})
   );

@@ -66,6 +66,21 @@ in {
       ::1         sonarr.kimono.local
     '';
 
+    networking.nameservers = [
+        "192.168.0.100"
+        
+        # quad9
+        "9.9.9.10"
+        "149.112.112.10"
+        "2620:fe::10"
+        "2620:fe::fe:10"
+    ];
+
+    networking.resolvconf.enable = pkgs.lib.mkForce false;
+    networking.dhcpcd.extraConfig = "nohook resolv.conf";
+    networking.networkmanager.dns = "none";
+    services.resolved.enable = false;
+
     # This value determines the NixOS release from which the default
     # settings for stateful data, like file locations and database versions
     # on your system were taken. It‘s perfectly fine and recommended to leave

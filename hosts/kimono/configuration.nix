@@ -25,6 +25,8 @@
       vim.enable = true;
       vscode.enable = true;
     };
+
+    # this server block is used for testing before i push things to my pi
     server = {
       domain = "kimono.local";
 
