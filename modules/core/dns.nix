@@ -5,10 +5,10 @@
       ::1         sonarr.kimono.local
     '';
 
-    networking.nameservers = [ "192.168.0.100" ];
+    networking.nameservers = [ "192.168.0.100" "9.9.9.10" ];
 
     services.resolved = {
-        enable = true;
+        enable = false;
         fallbackDns = [   
             # quad9
             "9.9.9.10"

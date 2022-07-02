@@ -12,7 +12,7 @@ in {
   options.modules.core.avahi = {
     enable = mkOption {
       type = types.bool;
-      default = true;
+      default = false;
     };
   };
 

@@ -36,13 +36,24 @@ in {
         enable = true;
 
         port = port;
+        host = "127.0.0.1";
 
         openFirewall = false;
 
         # were doubling down here
-        mutableSettings = false;
+        mutableSettings = true;
 
-        settings = recursiveUpdate defaultSettings cfg.settings;
+        /*settings = {
+            dns = {
+                bind_host = "0.0.0.0";
+
+                port = 53; 
+
+                bootstrap_dns = "9.9.9.10";
+            };
+        };*/
+
+        # settings = recursiveUpdate defaultSettings cfg.settings;
       };
 
       # DNS
