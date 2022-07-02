@@ -42,7 +42,7 @@ in {
         # were doubling down here
         mutableSettings = false;
 
-        settings = defaultSettings cfg.settings;
+        settings = recursiveUpdate defaultSettings cfg.settings;
       };
 
       # DNS
