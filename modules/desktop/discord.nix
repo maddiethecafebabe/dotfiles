@@ -1,6 +1,11 @@
+# this file is a huge hacky mess
+# TODO: just vendor the discord packages at this point
+#       because of nix limitations it will be a lot easier
+#       to just add options for the settings i need
 {
   lib,
   pkgs,
+  pkgs-unstable,
   config,
   ...
 }:
@@ -30,6 +35,14 @@ with lib; let
     categories = ["Network" "InstantMessaging"];
     mimeTypes = ["x-scheme-handler/discord"];
   };
+
+  tweakInputs = pkg: pkg.override {
+    # if this is not in sync with firefox
+    # it breaks opening urls
+    nss = pkgs.nss_latest;
+
+    # withOpenASAR = true;
+  };
 in {
   options.modules.desktop.discord = {
     enable = mkEnableOption "discord";
@@ -44,8 +57,9 @@ in {
     user.packages = with pkgs;
       if cfg.applyTweaks
       then [
-        (overrideDesktopEntry discord (super: mkDiscordDesktop super "Discord" "Discord --no-sandbox"))
-        (overrideDesktopEntry discord-canary (super: mkDiscordDesktop super "Discord Canary" "DiscordCanary --no-sandbox"))
+        xdg-utils
+        (overrideDesktopEntry (tweakInputs discord) (super: mkDiscordDesktop super "Discord" "Discord --no-sandbox"))
+        (overrideDesktopEntry (tweakInputs discord-canary) (super: mkDiscordDesktop super "Discord Canary" "DiscordCanary --no-sandbox"))
       ]
       else [
         discord
