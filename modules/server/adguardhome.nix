@@ -33,7 +33,7 @@ in {
   config = mkIf cfg.enable (
     recursiveUpdate {
       # conflict with port 53
-      services.resolved.enabled = false;
+      services.resolved.enable = false;
 
       services.adguardhome = {
         enable = true;
