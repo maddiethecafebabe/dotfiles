@@ -1,3 +1,5 @@
+{ lib, ...}:
+with lib;
 {
     networking.extraHosts = ''
       192.168.0.100   media.seifuku.local radarr.seifuku.local sonarr.seifuku.local documents.seifuku.local
@@ -8,7 +10,7 @@
     networking.nameservers = [ "192.168.0.100" "9.9.9.10" ];
 
     services.resolved = {
-        enable = false;
+        enable = mkDefault true;
         fallbackDns = [   
             # quad9
             "9.9.9.10"
