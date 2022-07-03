@@ -1,9 +1,5 @@
 # this file is a huge hacky mess
-# TODO: just vendor the discord packages at this point
-#       because of nix limitations it will be a lot easier
-#       to just add options for the settings i need
-# TODO: in the vendored package maybe make a wrapper script
-#       that merges the settings and not just dumps a readonly symlink
+# TODO: 
 {
   lib,
   pkgs,

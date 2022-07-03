@@ -135,8 +135,6 @@ in {
             homeDirectory = cfg.homeDir;
           };
 
-          # dconf = ((import ../../lib/mkGnomeShortcut.nix) { inherit lib; } cfg.shortcuts).dconf;
-
           programs.home-manager.enable = true;
           programs.bash.enable = mkDefault true;
         }

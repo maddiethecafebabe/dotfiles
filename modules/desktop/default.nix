@@ -49,7 +49,7 @@ in {
 
     # xdg-open will behave weird (read: open websites in gnome text editor)
     # if no browser is installed so lets just do it here
-    environment.systemPackages = with pkgs; [
+    user.packages = with pkgs; [
       firefox
       pavucontrol
       mullvad-vpn
@@ -57,6 +57,7 @@ in {
       wineWowPackages.stable
       obs-studio
       bitwarden
+      cinnamon.nemo
     ];
 
     environment.variables = {

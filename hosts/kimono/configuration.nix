@@ -24,6 +24,7 @@
     editors = {
       vim.enable = true;
       vscode.enable = true;
+      lapce.enable = true;
     };
 
     # this server block is used for testing before i push things to my pi
