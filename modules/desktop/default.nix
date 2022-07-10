@@ -42,6 +42,7 @@ in {
       discord.enable = mkDefault true;
       art.enable = mkDefault true;
       media.enable = mkDefault true;
+      gtk.enable = mkDefault true;
     };
 
     services.mullvad-vpn.enable = true;

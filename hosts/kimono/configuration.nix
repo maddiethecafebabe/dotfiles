@@ -18,6 +18,13 @@
     desktop = {
       enable = true;
       virtualisation.enable = true;
+      gtk.bookmarks = [
+        "file:///mnt/Executeable Executeable"
+        "file:///etc/dotfiles dotfiles"
+        "file:///mnt/Windows Windows"
+        "file:///mnt/Shared Shared"
+        "file:///mnt/Besenkammer Besenkammer"
+      ];
     };
     editors = {
       vim.enable = true;
@@ -38,14 +45,6 @@
       };
     };
   };
-
-  user.homeRaw.gtk.gtk3.bookmarks = [
-    "file:///mnt/Executeable Executeable"
-    "file:///etc/dotfiles dotfiles"
-    "file:///mnt/Windows Windows"
-    "file:///mnt/Shared Shared"
-    "file:///mnt/Besenkammer Besenkammer"
-  ];
 
   boot.initrd.kernelModules = ["amdgpu"];
 }
