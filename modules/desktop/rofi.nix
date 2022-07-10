@@ -11,10 +11,10 @@ in {
   options.modules.desktop.rofi = {
     enable = mkEnableOption "rofi";
 
-    gnome = {
+    shortcut = {
       binding = mkOption {
         type = types.str;
-        default = "<Super>space";
+        default = "super + @space";
       };
       command = mkOption {
         type = types.str;
@@ -25,6 +25,11 @@ in {
 
   config = mkIf cfg.enable {
     user = {
+      keybindings."${cfg.shortcut.binding}" = {
+        cmd = cfg.shortcut.command;
+        comment = "Launch rofi (application launcher)";
+      };
+
       packages = [pkgs.papirus-icon-theme];
 
       homeRaw = {

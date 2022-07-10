@@ -21,10 +21,10 @@ with lib; let
 in {
   options.user.keybindings = mkOption {
     type = types.attrs;
-    default = baseHotkeys;
+    default = {};
   };
 
   config = mkIf config.modules.desktop.wm.bspwm.enable {
-    services.xserver.windowManager.bspwm.sxhkd.configFile = buildHotkeysFile config.user.keybindings;
+    services.xserver.windowManager.bspwm.sxhkd.configFile = buildHotkeysFile (baseHotkeys // config.user.keybindings);
   };
 }
