@@ -13,6 +13,12 @@ with lib; let
   settings = {
     DANGEROUS_ENABLE_DEVTOOLS_ONLY_ENABLE_IF_YOU_KNOW_WHAT_YOURE_DOING = true;
     SKIP_HOST_UPDATE = true;
+    BACKGROUND_COLOR = "#202225";
+    
+    openasar = {
+      setup = true;
+      quickstart = true;
+    };
   };
 
   overrideDesktopEntry = pkg: f: let
@@ -26,7 +32,7 @@ with lib; let
       ];
     };
 
-  mkDiscordDesktop = pkg: desktopName: exec: {
+  mkDiscordDesktop = desktopName: exec: pkg: {
     name = pkg.pname;
     icon = pkg.pname;
     inherit desktopName exec;
@@ -57,8 +63,8 @@ in {
     user.packages = with pkgs-unstable;
       if cfg.applyTweaks
       then [
-        (overrideDesktopEntry (tweakInputs discord) (super: mkDiscordDesktop super "Discord" "Discord --no-sandbox"))
-        (overrideDesktopEntry (tweakInputs discord-canary) (super: mkDiscordDesktop super "Discord Canary" "DiscordCanary --no-sandbox"))
+        (overrideDesktopEntry (tweakInputs discord) (mkDiscordDesktop "Discord" "Discord --no-sandbox"))
+        (overrideDesktopEntry (tweakInputs discord-canary) (mkDiscordDesktop "Discord Canary" "DiscordCanary --no-sandbox"))
       ]
       else [
         discord
