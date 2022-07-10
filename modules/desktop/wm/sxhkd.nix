@@ -9,7 +9,7 @@ with lib; let
     trivial.pipe bindings [
       (mapAttrsToList (k: v: "# ${v.comment}\n${k}\n\t${v.cmd}"))
       (concatStringsSep "\n\n")
-      (builtins.toFile "sxhkd-bindings-config")
+      (pkgs.writeText "sxhkd-bindings-config")
     ];
 
   baseHotkeys = {
@@ -28,11 +28,5 @@ in {
     # dont use the configFile option because you cant apply new shortcuts without restarting
     # display-manager.service afaict
     user.home.file.".config/sxhkd/sxhkdrc".source = buildHotkeysFile (baseHotkeys // config.user.keybindings);
-
-    # make sure sxhkd will always be refreshed to the current config
-    system.userActivationScripts."sxhkdRefresh" = {
-      text = "${pkgs.procps}/bin/pkill -USR1 -x sxhkd";
-      deps = [];
-    };
   };
 }

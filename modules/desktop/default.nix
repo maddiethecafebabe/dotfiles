@@ -61,6 +61,11 @@ in {
       libreoffice
     ];
 
+    user.keybindings."super + Return" = {
+      cmd = "${pkgs.kitty}/bin/kitty";
+      comment = "Terminal Emulator";
+    };
+
     environment.variables = {
       BROWSER = "firefox";
     };
