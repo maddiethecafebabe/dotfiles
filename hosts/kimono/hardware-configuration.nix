@@ -22,7 +22,7 @@
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/f60ae98c-2c8f-4993-bea6-fb93b0981ad4";
     fsType = "ext4";
-    options = [ "noatime" "nodiratime" ];
+    options = ["noatime" "nodiratime"];
   };
 
   fileSystems."/nix/store" = {

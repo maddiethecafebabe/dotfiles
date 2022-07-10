@@ -25,9 +25,18 @@ in {
       xclip
     ];
 
+    user.homeRaw.services.redshift = {
+      enable = mkDefault true;
+      dawnTime = "05:00";
+      duskTime = "17:00";
+      temperature = {
+        day = 5500;
+        night = 4700;
+      };
+    };
+
     services = {
       picom.enable = true;
-      redshift.enable = true;
       xserver = {
         enable = true;
         displayManager = {

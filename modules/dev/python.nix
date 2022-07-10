@@ -10,6 +10,7 @@ with lib; let
       pandas
       numpy
       requests
+      yt-dlp
     ]);
   cfg = config.modules.dev;
 in {

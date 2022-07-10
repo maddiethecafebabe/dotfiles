@@ -13,13 +13,13 @@ in {
     ./art
     ./media
     ./gaming
-    ./gnome.nix
     ./pipewire.nix
     ./flatpak.nix
     ./virtualisation.nix
     ./discord.nix
     ./rofi.nix
     ./wm
+    ./gtk.nix
   ];
 
   options = {
@@ -34,7 +34,6 @@ in {
 
   config = mkIf cfg.enable {
     modules.desktop = {
-      gnome.enable = mkDefault false;
       wm.enable = mkDefault true;
       flatpak.enable = mkDefault true;
       pipewire.enable = mkDefault true;
@@ -57,7 +56,8 @@ in {
       wineWowPackages.stable
       obs-studio
       bitwarden
-      cinnamon.nemo
+      gnome3.nautilus
+      libreoffice
     ];
 
     environment.variables = {
