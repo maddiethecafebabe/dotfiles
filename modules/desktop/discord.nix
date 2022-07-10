@@ -54,7 +54,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs;
+    user.packages = with pkgs-unstable;
       if cfg.applyTweaks
       then [
         (overrideDesktopEntry (tweakInputs discord) (super: mkDiscordDesktop super "Discord" "Discord --no-sandbox"))
