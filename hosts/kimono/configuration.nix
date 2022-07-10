@@ -17,8 +17,6 @@
     core.user.authorizedKeys = pubkeys.yukata;
     desktop = {
       enable = true;
-      gnome.enable = false;
-      wm.enable = true;
       virtualisation.enable = true;
     };
     editors = {

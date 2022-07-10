@@ -24,8 +24,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    programs.dconf.enable = mkDefault gnomeCfg.enable;
-
     user = {
       packages = [pkgs.papirus-icon-theme];
 
@@ -41,19 +39,6 @@ in {
           };
 
           theme = "solarized";
-        };
-
-        dconf.settings = optionalAttrs gnomeCfg.enable {
-          "org/gnome/settings-daemon/plugins/media-keys" = {
-            custom-keybindings = [
-              "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
-            ];
-          };
-          "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-            binding = cfg.gnome.binding;
-            command = cfg.gnome.command;
-            name = "Rofi";
-          };
         };
       };
     };
