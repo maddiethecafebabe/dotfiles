@@ -12,18 +12,22 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [
-      kitty
+    user = {
+      keybindings = import ./bspwm-hotkeys.nix;
 
-      libnotify
-      (polybar.override {
-        pulseSupport = true;
-        nlSupport = true;
-      })
+      packages = with pkgs; [
+        kitty
 
-      maim
-      xclip
-    ];
+        libnotify
+        (polybar.override {
+          pulseSupport = true;
+          nlSupport = true;
+        })
+
+        maim
+        xclip
+      ];
+    };
 
     user.homeRaw.services.redshift = {
       enable = mkDefault true;

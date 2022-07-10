@@ -10,6 +10,7 @@ in {
   imports = [
     ./bspwm.nix
     ./feh.nix
+    ./sxhkd.nix
   ];
 
   options.modules.desktop.wm = {
