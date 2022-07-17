@@ -66,6 +66,11 @@ in {
       comment = "Terminal Emulator";
     };
 
+    user.keybindings."Print" = {
+      cmd = "mkdir -p ~/Pictures/Screenshots && maim -s | tee ~/Pictures/Screenshots/$(date +%F_%s.png).png | xclip -selection clipboard -t image/png";
+      comment = "Screenshot";
+    };
+
     environment.variables = {
       BROWSER = "firefox";
     };

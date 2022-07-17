@@ -34,8 +34,8 @@ in {
       dawnTime = "05:00";
       duskTime = "17:00";
       temperature = {
-        day = 5500;
-        night = 4700;
+        day = 6500;
+        night = 5700;
       };
     };
 

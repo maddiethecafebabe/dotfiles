@@ -99,14 +99,15 @@
 
   # move/resize
 
-  "super + alt + {h,j,k,l}" = {
-    cmd = "bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}";
-    comment = "expand a window by moving one of its side outward";
-  };
-
-  "super + alt + shift + {h,j,k,l}" = {
-    cmd = "bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}";
-    comment = "contract a window by moving one of its side inward";
+  "super + ctrl + alt + {Left,Down,Up,Right}" = {
+    cmd = ''      n=10; \
+        { d1=left;   d2=right;  dx=-$n; dy=0;   \
+        , d1=bottom; d2=top;    dx=0;   dy=$n;  \
+        , d1=top;    d2=bottom; dx=0;   dy=-$n; \
+        , d1=right;  d2=left;   dx=$n;  dy=0;   \
+        } \
+        bspc node --resize $d1 $dx $dy || bspc node --resize $d2 $dx $dy'';
+    comment = "Smart resize, will grow or shrink depending on location.";
   };
 
   "super + {Left,Down,Up,Right}" = {
