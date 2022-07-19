@@ -47,4 +47,14 @@ in {
       iwd.enable = true;
     };
   };
+
+  services.xserver.libinput = {
+    enable = true;
+
+    touchpad = {
+      naturalScrolling = false;
+      middleEmulation = true;
+      tapping = true;
+    };
+  };
 }
