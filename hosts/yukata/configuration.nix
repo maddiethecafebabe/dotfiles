@@ -1,9 +1,10 @@
 {
   config,
+  lib,
   pkgs,
   pubkeys,
   ...
-}: let
+}: with lib; let
   hostName = "yukata";
 in {
   imports = [
@@ -52,7 +53,7 @@ in {
     enable = true;
 
     touchpad = {
-      naturalScrolling = false;
+      naturalScrolling = true;
       middleEmulation = true;
       tapping = true;
     };
